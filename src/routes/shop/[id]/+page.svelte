@@ -1,12 +1,13 @@
 <script lang="ts">
+  import { onMount } from 'svelte'
   import type { PageData } from './$types';
   import ProductTile from '../ProductTile.svelte';
   import ProductVariationSelect from '$lib/components/ProductVariationSelect.svelte';
   import QuantitySelect from '$lib/components/QuantitySelect.svelte';
   import SizesSection from './SizesSection.svelte';
-  import type IProduct from '$lib/interfaces/IProduct';
-  import type IProductVariation from '$lib/interfaces/IProductVariation';
+  import type { IProduct, IVariation } from '$lib/interfaces/IProduct';
   import Button from '$lib/components/Button.svelte';
+  import generateProductJsonLd from '$lib/jsonld/product';
 
   export let data: PageData;
   const product = data.product as IProduct;
@@ -28,12 +29,19 @@
     cooldownInputs = false;
   }
 
+  function defaultVariation() {
+    return product.variations?.find(variation => variation.default_price)
+  }
+
+  let jsonLd: HTMLElement;
   let cooldownInputs = false;
   let quantity = 1;
-  let selectedVariation: IProductVariation;
+  let selectedVariation: IVariation | undefined = defaultVariation()
   $: addProductButtonText = cooldownInputs
     ? `${quantity} produkt${quantity > 1 ? 'er' : ''} lagt til`
     : `Legg til ${quantity} i handlekurven`;
+
+  onMount(() => document.head.appendChild(generateProductJsonLd(product)))
 </script>
 
 <div class="product-container">
