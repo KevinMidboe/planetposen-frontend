@@ -1,0 +1,6 @@
+
+# Questions: webmaster@planetposen.no
+User-agent: *
+Allow: /
+
+Sitemap: http://planet.schleppe.cloud/sitemap.xml
