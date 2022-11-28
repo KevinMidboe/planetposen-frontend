@@ -1,0 +1,53 @@
+---
+kind: pipeline
+type: docker
+name: Lint and build project
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+  - name: Build project
+    image: node:18
+    commands:
+      - yarn
+      - yarn build
+
+  - name: Lint project
+    image: node:18
+    commands:
+      - yarn
+      - yarn lint
+
+---
+kind: pipeline
+type: docker
+name: Compile docker image
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+  - name: Build
+    image: node:18
+    commands:
+      - yarn
+      - yarn build
+
+depends_on:
+  - Lint and build project
+
+trigger:
+  branch:
+    - main
+  event:
+    exclude:
+      - pull_request
+
+---
+kind: signature
+hmac: 84765f19d995d66f1d3409c4eddd1f68d1f2d297d65cd9e2612e6bb13e8ecb94
+
+...

@@ -9,8 +9,7 @@ const config = {
 	kit: {
 		csrf: {
 			checkOrigin: false
-		},
-		outDir: 'build'
+		}
 	}
 };
 
