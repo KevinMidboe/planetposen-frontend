@@ -4,9 +4,9 @@
     <p>
       <strong>Leveranseinformasjon</strong>
       Vi kommer tilbake til deg innen en uke etter bestilling med endelig leveringsdato. Estimert leveringsdato
-      er 2-5 uker fra bestillingen din ble sendt, avhengig av tilgjengeligheten på produktene i bestillingen
-      din. Vår transportpartner på innenlandsleveringer er Schencker, som leverer på døren på hverdager
-      mellom 15:00 og 21:00 norsk tid.
+      er 1-2 uker fra bestillingen din ble sendt, avhengig av tilgjengeligheten på produktene i bestillingen
+      din. Vår transportpartner på innenlandsleveringer er Posten, Bring og HeltHjem, som leverer på
+      dør eller postkasse på hverdager.
     </p>
 
     <p>
@@ -38,7 +38,7 @@
       det kjøpte produktet tas ut av produksjon eller endres med tanke på ytelse eller kvalitet.
     </p>
 
-    <p class="last-edit"><strong>Siden ble sist endret:</strong> 16.11.2022</p>
+    <p class="last-edit"><strong>Siden ble sist endret:</strong> 28.11.2022</p>
   </section>
 </article>
 
