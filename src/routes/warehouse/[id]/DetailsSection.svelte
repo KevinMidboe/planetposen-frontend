@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type IProduct from '$lib/interfaces/IProduct';
+  import type { IProduct } from '$lib/interfaces/IProduct';
 
   export let product: IProduct;
   export let edit: boolean;

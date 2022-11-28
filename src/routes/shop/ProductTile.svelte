@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type IProduct from '$lib/interfaces/IProduct';
+  import type { IProduct } from '$lib/interfaces/IProduct';
 
   export let product: IProduct;
   export let large = false;
@@ -12,14 +12,16 @@
       product?.primary_color === '#231B1D' ? '#f3efeb' : '#37301e'
     }`}"
   >
-    {#if !large}<h3>{product?.name}</h3>{/if}
+    {#if !large}
+    <h3>{product?.name}</h3>
+    {/if}
 
     <div class="{`image-frame ${large ? 'large' : null}`}">
       <img src="{product?.image}" alt="{product?.name}" />
     </div>
 
     {#if !large}
-      <p class="subtext">{product?.subtext}</p>
+    <p class="subtext">{product?.subtext}</p>
     {/if}
   </div>
 </a>

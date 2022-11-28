@@ -1,8 +1,8 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
   import ProductList from './WarehouseProductList.svelte';
-  import type IProduct from '$lib/interfaces/IProduct';
   import Button from '$lib/components/Button.svelte';
+  import type { IProduct } from '$lib/interfaces/IProduct';
   import type { PageData } from './$types';
 
   export let data: PageData;
