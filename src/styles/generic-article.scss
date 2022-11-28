@@ -1,0 +1,41 @@
+@import './media-queries.scss';
+
+article {
+  margin: 20% 2rem;
+
+  width: 60%;
+}
+
+p {
+  font-size: 1.2rem;
+  margin: 2rem 0;
+  line-height: 1.5;
+
+  strong {
+    display: block;
+    margin-top: 2rem;
+  }
+}
+
+h1 {
+  margin: 4rem 0;
+}
+
+@include mobile {
+  article {
+    width: unset;
+    margin: 0.5rem;
+  }
+}
+
+p.last-edit {
+  margin-top: 2rem;
+
+  strong {
+    display: inline-block;
+  }
+}
+
+a {
+  text-decoration: underline;
+}
