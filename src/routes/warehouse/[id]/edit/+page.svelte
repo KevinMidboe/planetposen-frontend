@@ -1,6 +1,6 @@
 <script lang="ts">
   import Input from '$lib/components/Input.svelte';
-  import type IProduct from '$lib/interfaces/IProduct';
+  import type { IProduct } from '$lib/interfaces/IProduct';
   import type { PageServerData } from './$types';
 
   export let data: PageServerData;
@@ -12,9 +12,9 @@
   <div>
     <h2>Product attributes</h2>
     <Input label="Name" value="{product.name}" required="{false}" />
-    <Input label="Description" value="{product.description}" required="{false}" />
-    <Input label="Subtext" value="{product.subtext}" required="{false}" />
-    <Input label="Color" value="{product.primary_color}" required="{false}" />
+    <Input label="Description" value="{product.description || ''}" required="{false}" />
+    <Input label="Subtext" value="{product.subtext || ''}" required="{false}" />
+    <Input label="Color" value="{product.primary_color || ''}" required="{false}" />
   </div>
 
   <div>

@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { PageData } from './$types';
   import ProductTile from './ProductTile.svelte';
-  import type IProduct from '$lib/interfaces/IProduct';
+  import type { IProduct } from '$lib/interfaces/IProduct';
 
   export let data: PageData;
   const products = data.products as Array<IProduct>;

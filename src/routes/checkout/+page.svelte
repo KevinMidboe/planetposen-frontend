@@ -7,7 +7,7 @@
   import VippsHurtigkasse from '$lib/components/VippsHurtigkasse.svelte';
   import { cart } from '$lib/cartStore';
 
-  import type IProduct from '$lib/interfaces/IProduct';
+  import type { IProduct } from '$lib/interfaces/IProduct';
 
   function postOrder(event: any) {
     const formData = new FormData(event.target);

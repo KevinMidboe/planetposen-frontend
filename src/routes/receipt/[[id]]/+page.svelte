@@ -3,7 +3,7 @@
 
   import { mockProducts } from '$lib/utils/mock';
   import type { PageServerData } from './$types';
-  import type IProduct from '$lib/interfaces/IProduct';
+  import type { IProduct } from '$lib/interfaces/IProduct';
 
   function subTotal(products: Array<IProduct>) {
     let total = 0;

@@ -3,7 +3,7 @@
   import DetailsSection from './DetailsSection.svelte';
   import Button from '$lib/components/Button.svelte';
   import type { PageServerData } from './$types';
-  import type IProduct from '$lib/interfaces/IProduct';
+  import type { IProduct } from '$lib/interfaces/IProduct';
 
   export let data: PageServerData;
   const product = data.product as IProduct;
@@ -20,7 +20,7 @@
   <img src="{product.image}" alt="Product" />
   <div class="name-and-price">
     <p>{product.name}</p>
-    <p>NOK {product.price}</p>
+    <p>NOK {product?.price}</p>
   </div>
 
   <div class="edit-button">

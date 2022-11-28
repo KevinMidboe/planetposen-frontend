@@ -1,5 +1,6 @@
 import { dev } from '$app/environment';
 import { env } from '$env/dynamic/private';
+import type { IProductResponse } from '$lib/interfaces/ApiResponse';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ fetch, params }) => {
@@ -11,6 +12,6 @@ export const load: PageServerLoad = async ({ fetch, params }) => {
   }
 
   const res = await fetch(url);
-  const product = await res.json();
+  const product: IProductResponse = await res.json();
   return product;
 };

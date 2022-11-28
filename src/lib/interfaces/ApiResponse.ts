@@ -15,3 +15,13 @@ export interface IOrderSummaryResponse {
   success: boolean;
   order: IOrderSummary;
 }
+
+export interface IProductResponse {
+  success: boolean
+  product: IProduct
+}
+
+export interface IProductsResponse {
+  success: boolean
+  products: Array<IProduct>
+}

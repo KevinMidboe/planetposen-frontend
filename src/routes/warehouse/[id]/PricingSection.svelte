@@ -1,6 +1,5 @@
 <script lang="ts">
-  import type IProduct from '$lib/interfaces/IProduct';
-  import type IProductVariation from '$lib/interfaces/IProductVariation';
+  import type { IProduct, IVariation } from '$lib/interfaces/IProduct';
   import Button from '$lib/components/Button.svelte';
   import Badge from '$lib/components/Badge.svelte';
   import BadgeType from '$lib/interfaces/BadgeType';
@@ -10,7 +9,7 @@
   let editingVariationIndex = -1;
 
   interface ISkuResponse {
-    skus: IProductVariation[];
+    skus: IVariation[];
     success: boolean;
   }
 
@@ -19,7 +18,7 @@
     product.variations = response?.skus;
   };
 
-  function setDefault(variation: IProductVariation) {
+  function setDefault(variation: IVariation) {
     if (!product.variations) return;
 
     let url = `/api/product/${product.product_no}/sku/${variation.sku_id}/default_price`;
@@ -60,7 +59,7 @@
       .then(() => (editingVariationIndex = product.variations.length - 1));
   }
 
-  function saveSkuVariation(variation: IProductVariation) {
+  function saveSkuVariation(variation: IVariation) {
     let url = `/api/product/${product.product_no}/sku/${variation?.sku_id}`;
     if (window?.location?.href.includes('localhost')) {
       url = 'http://localhost:30010'.concat(url);
@@ -81,7 +80,7 @@
       .then(() => resetEditingIndex());
   }
 
-  function deleteVariation(variation: IProductVariation) {
+  function deleteVariation(variation: IVariation) {
     console.log('delete it using api', variation);
     let url = `/api/product/${product.product_no}/sku/${variation?.sku_id}`;
     if (window?.location?.href.includes('localhost')) {
