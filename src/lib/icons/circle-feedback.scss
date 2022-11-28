@@ -1,0 +1,184 @@
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  13.3% {
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  13.3% {
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes drawCheckmark {
+  0% {
+    stroke-dashoffset: 28px;
+  }
+
+  15% {
+    stroke-dashoffset: 28px;
+    -webkit-animation-timing-function: cubic-bezier(1, 0, 0, 1);
+    animation-timing-function: cubic-bezier(1, 0, 0, 1);
+  }
+
+  55% {
+    stroke-dashoffset: 0px;
+  }
+
+  to {
+    stroke-dashoffset: 0px;
+  }
+}
+
+@keyframes drawCheckmark {
+  0% {
+    stroke-dashoffset: 28px;
+  }
+
+  15% {
+    stroke-dashoffset: 28px;
+    -webkit-animation-timing-function: cubic-bezier(1, 0, 0, 1);
+    animation-timing-function: cubic-bezier(1, 0, 0, 1);
+  }
+
+  55% {
+    stroke-dashoffset: 0px;
+  }
+
+  to {
+    stroke-dashoffset: 0px;
+  }
+}
+
+@-webkit-keyframes checkmarkCircleShimmer {
+  0% {
+    -webkit-transform: translate(24px, 24px) rotate(-35deg);
+    transform: translate(24px, 24px) rotate(-35deg);
+  }
+
+  15% {
+    -webkit-animation-timing-function: cubic-bezier(1, 0, 0, 1);
+    animation-timing-function: cubic-bezier(1, 0, 0, 1);
+    -webkit-transform: translate(24px, 24px) rotate(-35deg);
+    transform: translate(24px, 24px) rotate(-35deg);
+  }
+
+  75% {
+    -webkit-transform: translate(24px, 24px) rotate(325deg);
+    transform: translate(24px, 24px) rotate(325deg);
+  }
+
+  to {
+    -webkit-transform: translate(24px, 24px) rotate(325deg);
+    transform: translate(24px, 24px) rotate(325deg);
+  }
+}
+
+@keyframes checkmarkCircleShimmer {
+  0% {
+    -webkit-transform: translate(24px, 24px) rotate(-35deg);
+    transform: translate(24px, 24px) rotate(-35deg);
+  }
+
+  15% {
+    -webkit-animation-timing-function: cubic-bezier(1, 0, 0, 1);
+    animation-timing-function: cubic-bezier(1, 0, 0, 1);
+    -webkit-transform: translate(24px, 24px) rotate(-35deg);
+    transform: translate(24px, 24px) rotate(-35deg);
+  }
+
+  75% {
+    -webkit-transform: translate(24px, 24px) rotate(325deg);
+    transform: translate(24px, 24px) rotate(325deg);
+  }
+
+  to {
+    -webkit-transform: translate(24px, 24px) rotate(325deg);
+    transform: translate(24px, 24px) rotate(325deg);
+  }
+}
+
+.CheckSuccess-checkGroup,
+.CheckError-checkGroup,
+.CheckWarning-checkGroup {
+  -webkit-animation: fadeIn 1s linear both;
+  animation: fadeIn 1s linear both;
+}
+
+.CheckSuccess-check,
+.CheckError-cross,
+.CheckWarning-exclamation {
+  -webkit-animation: drawCheckmark 1s linear both;
+  animation: drawCheckmark 1s linear both;
+}
+
+.CheckSuccess-circle,
+.CheckError-circle,
+.CheckWarning-circle {
+  -webkit-animation: checkmarkCircleShimmer 1s linear both, drawCircle 1s linear both;
+  animation: checkmarkCircleShimmer 1s linear both, drawCircle 1s linear both;
+}
+
+@-webkit-keyframes drawCircle {
+  0% {
+    stroke-dashoffset: 145px;
+  }
+
+  8.35% {
+    stroke-dashoffset: 145px;
+    -webkit-animation-timing-function: cubic-bezier(1, 0, 0, 1);
+    animation-timing-function: cubic-bezier(1, 0, 0, 1);
+  }
+
+  38.35% {
+    stroke-dashoffset: 0px;
+  }
+
+  to {
+    stroke-dashoffset: 0px;
+  }
+}
+
+@keyframes drawCircle {
+  0% {
+    stroke-dashoffset: 145px;
+  }
+
+  8.35% {
+    stroke-dashoffset: 145px;
+    -webkit-animation-timing-function: cubic-bezier(1, 0, 0, 1);
+    animation-timing-function: cubic-bezier(1, 0, 0, 1);
+  }
+
+  38.35% {
+    stroke-dashoffset: 0px;
+  }
+
+  to {
+    stroke-dashoffset: 0px;
+  }
+}
