@@ -46,3 +46,8 @@ trigger:
     exclude:
       - pull_request
 
+---
+kind: signature
+hmac: 84765f19d995d66f1d3409c4eddd1f68d1f2d297d65cd9e2612e6bb13e8ecb94
+
+...
