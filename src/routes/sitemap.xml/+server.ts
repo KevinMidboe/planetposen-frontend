@@ -41,18 +41,16 @@ export async function GET() {
   return new Response(body, { headers });
 }
 
-function buildSitemapUrl(address: string, modified: string, frequency: string) {
+function buildSitemapUrl(path: string, modified: string, frequency: string) {
   return `<url>
- <loc>https://${address}</loc>
+ <loc>https://${domain}${path}</loc>
   <lastmod>${modified}</lastmod>
   <changefreq>${frequency}</changefreq>
 </url>`;
 }
 
 function sitemapPages(): string {
-  return pages
-    .map((page) => buildSitemapUrl(`https://${domain}/${page.name}`, page.modified, 'yearly'))
-    .join('\n');
+  return pages.map((page) => buildSitemapUrl(`/${page.name}`, page.modified, 'yearly')).join('\n');
 }
 
 async function sitemapShopPages(): Promise<string> {
@@ -66,11 +64,7 @@ async function sitemapShopPages(): Promise<string> {
 
   return products?.products
     ?.map((product) =>
-      buildSitemapUrl(
-        `https://${domain}/shop/${product.product_no}`,
-        String(product.updated),
-        'daily'
-      )
+      buildSitemapUrl(`/shop/${product.product_no}`, String(product.updated), 'daily')
     )
     .join('\n');
 }
