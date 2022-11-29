@@ -1,5 +1,6 @@
 import { dev } from '$app/environment';
 import { env } from '$env/dynamic/private';
+import generateProductJsonLd from '$lib/jsonld/product';
 import type { IProductResponse } from '$lib/interfaces/ApiResponse';
 import type { PageServerLoad } from './$types';
 
@@ -12,6 +13,11 @@ export const load: PageServerLoad = async ({ fetch, params }) => {
   }
 
   const res = await fetch(url);
-  const product: IProductResponse = await res.json();
-  return product;
+  const productResponse: IProductResponse = await res.json();
+  const jsonld = generateProductJsonLd(productResponse?.product);
+
+  return {
+    product: productResponse?.product,
+    jsonld
+  };
 };
