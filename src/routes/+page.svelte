@@ -1,4 +1,5 @@
 <script lang="ts">
+  import PageMeta from '$lib/components/PageMeta.svelte';
   import FrontText from '$lib/components/FrontText.svelte';
   import FrontTextImage from '$lib/components/FrontTextImage.svelte';
   import FrontTextImageBubble from '$lib/components/FrontTextImageBubble.svelte';
@@ -53,11 +54,7 @@
   ];
 </script>
 
-<svelte:head>
-  <title>Home</title>
-  <meta name="description" content="Svelte demo app" />
-</svelte:head>
-
+<PageMeta title="Planetposen" description="Planetposen hjemmeside" />
 <section class="frontpage">
   <!-- {#each textImages as data}
     <TextImageParralax {data} />

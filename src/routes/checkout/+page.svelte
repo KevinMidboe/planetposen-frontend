@@ -1,13 +1,12 @@
 <script lang="ts">
   import OrderSection from './OrderSection.svelte';
   import DeliverySection from './DeliverySection.svelte';
+  import PageMeta from '$lib/components/PageMeta.svelte';
   import CheckoutButton from '$lib/components/Button.svelte';
   import StripeCard from '$lib/components/StripeCard.svelte';
   import ApplePayButton from '$lib/components/ApplePayButton.svelte';
   import VippsHurtigkasse from '$lib/components/VippsHurtigkasse.svelte';
   import { cart } from '$lib/cartStore';
-
-  import type { IProduct } from '$lib/interfaces/IProduct';
 
   function postOrder(event: any) {
     const formData = new FormData(event.target);
@@ -34,6 +33,11 @@
     fetch(url, options);
   }
 </script>
+
+<PageMeta
+  title="Kasse"
+  description="Kasse for bestilling og betaling av produkter i handlekurven"
+/>
 
 <h1>Checkout</h1>
 <form class="checkout" on:submit|preventDefault="{postOrder}">

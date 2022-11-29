@@ -1,3 +1,11 @@
+<script lang="ts">
+  import PageMeta from '$lib/components/PageMeta.svelte';
+</script>
+
+<PageMeta
+  title="Personvernerklæring"
+  description="Personvernerklæring for planetposen nettbutikk"
+/>
 <article>
   <h1>Personvernerklæring</h1>
   <section>

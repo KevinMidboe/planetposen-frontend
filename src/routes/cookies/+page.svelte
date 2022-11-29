@@ -1,3 +1,8 @@
+<script lang="ts">
+  import PageMeta from '$lib/components/PageMeta.svelte';
+</script>
+
+<PageMeta title="Cookies" description="Beskrivelse av nettsidens bruk av cookies" />
 <article>
   <h1>Cookies</h1>
 

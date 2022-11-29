@@ -1,3 +1,11 @@
+<script lang="ts">
+  import PageMeta from '$lib/components/PageMeta.svelte';
+</script>
+
+<PageMeta
+  title="Betingelser & vilkår"
+  description="Beskrivelse av alle betingelser og vilkår tilknyttet bruk av planetposen nettbutikk"
+/>
 <article>
   <h1>Betingelser og vilkår</h1>
   <section>
