@@ -1,4 +1,4 @@
-import type IProduct from './IProduct';
+import type { IProduct } from './IProduct';
 import type { IOrder, IOrderSummary } from './IOrder';
 
 export interface IProductResponse {

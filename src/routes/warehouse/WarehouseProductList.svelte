@@ -29,10 +29,10 @@
 
         <td class="name-and-price">
           <p><a href="/warehouse/{product.product_no}">{product.name}</a></p>
-          <p>{product.variation_count} variation(s)</p>
+          <p>{product?.variations?.length} variation(s)</p>
         </td>
 
-        <td class="stock-column">{product.sum_stock}</td>
+        <td class="stock-column">{product?.sum_stock}</td>
 
         <td class="date-column">
           {new Intl.DateTimeFormat('nb-NO', { dateStyle: 'short', timeStyle: 'short' }).format(

@@ -33,9 +33,12 @@
   let cooldownInputs = false;
   let quantity = 1;
   let selectedVariation: IVariation | undefined = defaultVariation();
+
   $: addProductButtonText = cooldownInputs
     ? `${quantity} produkt${quantity > 1 ? 'er' : ''} lagt til`
     : `Legg til ${quantity} i handlekurven`;
+
+  onMount(() => document.head.appendChild(generateProductJsonLd(product)))
 </script>
 
 <div class="product-container">
