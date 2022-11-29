@@ -1,18 +1,15 @@
 <script lang="ts">
-  import { onMount } from 'svelte'
-  import type { PageData } from './$types';
   import ProductTile from '../ProductTile.svelte';
   import ProductVariationSelect from '$lib/components/ProductVariationSelect.svelte';
   import QuantitySelect from '$lib/components/QuantitySelect.svelte';
   import SizesSection from './SizesSection.svelte';
-  import type { IProduct, IVariation } from '$lib/interfaces/IProduct';
   import Button from '$lib/components/Button.svelte';
-  import generateProductJsonLd from '$lib/jsonld/product';
+  import type { PageData } from './$types';
+  import type { IProduct, IVariation } from '$lib/interfaces/IProduct';
 
   export let data: PageData;
   const product = data.product as IProduct;
   import { addProductToCart } from '$lib/websocketCart';
-  console.log('shop product:', product);
 
   function setSelectedVariation(event: CustomEvent) {
     selectedVariation = event.detail;
@@ -30,13 +27,13 @@
   }
 
   function defaultVariation() {
-    return product.variations?.find(variation => variation.default_price)
+    return product.variations?.find((variation) => variation.default_price);
   }
 
-  let jsonLd: HTMLElement;
   let cooldownInputs = false;
   let quantity = 1;
-  let selectedVariation: IVariation | undefined = defaultVariation()
+  let selectedVariation: IVariation | undefined = defaultVariation();
+
   $: addProductButtonText = cooldownInputs
     ? `${quantity} produkt${quantity > 1 ? 'er' : ''} lagt til`
     : `Legg til ${quantity} i handlekurven`;
@@ -71,9 +68,12 @@
 </div>
 <SizesSection />
 
+{#if data?.jsonld}
+  {@html data.jsonld}
+{/if}
+
 <style lang="scss" module="scoped">
   @import '../../../styles/media-queries.scss';
-  // @import "../styles/global.scss";
 
   .product-container {
     display: grid;

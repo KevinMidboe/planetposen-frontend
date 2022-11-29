@@ -13,7 +13,7 @@
     }`}"
   >
     {#if !large}
-    <h3>{product?.name}</h3>
+      <h3>{product?.name}</h3>
     {/if}
 
     <div class="{`image-frame ${large ? 'large' : null}`}">

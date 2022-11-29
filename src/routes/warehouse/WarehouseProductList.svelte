@@ -34,17 +34,17 @@
 
         <td class="stock-column">{product?.sum_stock}</td>
 
-        <td class="date-column"
-          >{new Intl.DateTimeFormat('nb-NO', { dateStyle: 'short', timeStyle: 'short' }).format(
+        <td class="date-column">
+          {new Intl.DateTimeFormat('nb-NO', { dateStyle: 'short', timeStyle: 'short' }).format(
             new Date(product.created || 0)
-          )}</td
-        >
+          )}
+        </td>
 
-        <td class="date-column"
-          >{new Intl.DateTimeFormat('nb-NO', { dateStyle: 'short', timeStyle: 'short' }).format(
+        <td class="date-column">
+          {new Intl.DateTimeFormat('nb-NO', { dateStyle: 'short', timeStyle: 'short' }).format(
             new Date(product.updated || 0)
-          )}</td
-        >
+          )}
+        </td>
       </tr>
     {/each}
   </tbody>

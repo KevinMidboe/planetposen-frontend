@@ -1,7 +1,7 @@
-import type { IProduct } from '../interfaces/IProduct'
+import type { IProduct } from '../interfaces/IProduct';
 
 function structureProduct(product: IProduct) {
-  const output = product?.variations?.map(variation => {
+  const output = product?.variations?.map((variation) => {
     return {
       '@context': 'https://schema.org/',
       '@type': 'Product',
@@ -23,16 +23,15 @@ function structureProduct(product: IProduct) {
         itemCondition: 'https://schema.org/NewCondition',
         availability: 'https://schema.org/InStock'
       }
-    }
-  })
+    };
+  });
 
   return JSON.stringify(output);
 }
 
-export default function generateProductJsonLd(product: IProduct): HTMLElement {
-  const jsonldScript = document.createElement('script');
-  jsonldScript.setAttribute('type', 'application/ld+json');
-  jsonldScript.textContent = structureProduct(product);
-
-  return jsonldScript;
+export default function generateProductJsonLd(product: IProduct): string {
+  return `<script type="application/ld+json">
+${structureProduct(product)}
+</script>
+`;
 }

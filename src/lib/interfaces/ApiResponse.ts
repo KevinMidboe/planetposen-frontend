@@ -1,4 +1,4 @@
-import type IProduct from './IProduct';
+import type { IProduct } from './IProduct';
 import type { IOrder, IOrderSummary } from './IOrder';
 
 export interface IProductResponse {
@@ -17,11 +17,11 @@ export interface IOrderSummaryResponse {
 }
 
 export interface IProductResponse {
-  success: boolean
-  product: IProduct
+  success: boolean;
+  product: IProduct;
 }
 
 export interface IProductsResponse {
-  success: boolean
-  products: Array<IProduct>
+  success: boolean;
+  products: Array<IProduct>;
 }

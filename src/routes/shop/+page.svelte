@@ -1,12 +1,14 @@
 <script lang="ts">
   import type { PageData } from './$types';
   import ProductTile from './ProductTile.svelte';
+  import PageMeta from '$lib/components/PageMeta.svelte';
   import type { IProduct } from '$lib/interfaces/IProduct';
 
   export let data: PageData;
   const products = data.products as Array<IProduct>;
 </script>
 
+<PageMeta title="Nettbutikk" description="Planetposen nettbutikk" />
 <div class="page">
   <h1>Nettbutikk</h1>
 
