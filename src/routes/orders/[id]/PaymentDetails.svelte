@@ -1,6 +1,6 @@
 <script lang="ts">
   import Badge from '$lib/components/Badge.svelte';
-  import type BadgeType from '$lib/interfaces/BadgeType';
+  // import type BadgeType from '$lib/interfaces/BadgeType';
   import type { IOrder } from '$lib/interfaces/IOrder';
 
   export let order: IOrder;

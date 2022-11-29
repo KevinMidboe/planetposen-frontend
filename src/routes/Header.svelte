@@ -132,13 +132,13 @@
   }
 
   // li[aria-current='page']::after, li:hover::after {
-  // 	content: '';
-  // 	width: 90%;
-  // 	height: 2px;
-  // 	position: absolute;
-  // 	bottom: 0;
-  // 	margin-left: 5%;
-  // 	background-color: var(--color-text);
+  //  content: '';
+  //  width: 90%;
+  //  height: 2px;
+  //  position: absolute;
+  //  bottom: 0;
+  //  margin-left: 5%;
+  //  background-color: var(--color-text);
   // }
 
   nav a {
@@ -156,6 +156,6 @@
   }
 
   // a:hover {
-  // 	color: var(--color-theme-1);
+  //  color: var(--color-theme-1);
   // }
 </style>

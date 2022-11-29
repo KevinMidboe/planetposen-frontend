@@ -5,8 +5,8 @@
   import Footer from './Footer.svelte';
   import CartModal from './CartModal.svelte';
   import { closeCart } from '$lib/cartStore';
-  import requestSessionCookie from '$lib/utils/requestSessionCookie';
   import { getCookie } from '$lib/utils/cookie';
+  import requestSessionCookie from '$lib/utils/requestSessionCookie';
   import { connectToCart, reconnectIfCartWSClosed } from '$lib/websocketCart';
   import './styles.css';
 
