@@ -4,6 +4,7 @@
   import QuantitySelect from '$lib/components/QuantitySelect.svelte';
   import SizesSection from './SizesSection.svelte';
   import Button from '$lib/components/Button.svelte';
+  import PageMeta from '$lib/components/PageMeta.svelte';
   import type { PageData } from './$types';
   import type { IProduct, IVariation } from '$lib/interfaces/IProduct';
 
@@ -33,14 +34,14 @@
   let cooldownInputs = false;
   let quantity = 1;
   let selectedVariation: IVariation | undefined = defaultVariation();
+  let pageTitle = `Nettbutikk - ${product.name}`
 
   $: addProductButtonText = cooldownInputs
     ? `${quantity} produkt${quantity > 1 ? 'er' : ''} lagt til`
     : `Legg til ${quantity} i handlekurven`;
-
-  onMount(() => document.head.appendChild(generateProductJsonLd(product)))
 </script>
 
+<PageMeta title="{pageTitle}" description="{product.description}" />
 <div class="product-container">
   <ProductTile product="{product}" large="{true}" />
 
