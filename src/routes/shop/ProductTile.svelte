@@ -21,7 +21,7 @@
     </div>
 
     {#if !large}
-    <p class="subtext">{product?.subtext}</p>
+      <p class="subtext">{product?.subtext}</p>
     {/if}
   </div>
 </a>
