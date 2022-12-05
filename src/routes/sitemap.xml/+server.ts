@@ -52,15 +52,10 @@ function sitemapPages(): string {
 }
 
 async function sitemapShopPages(): Promise<string> {
-  let url = `/api/products`;
-  if (dev || env.API_HOST) {
-    url = (env.API_HOST || 'http://localhost:30010').concat(url);
-  }
+  const res = await fetch('/api/products');
+  const productResponse: IProductsDTO = await res.json();
 
-  const res = await fetch(url);
-  const products: IProductResponse = await res.json();
-
-  return products?.products
+  return productResponse?.products
     ?.map((product) =>
       buildSitemapUrl(`/shop/${product.product_no}`, String(product.updated), 'daily')
     )
