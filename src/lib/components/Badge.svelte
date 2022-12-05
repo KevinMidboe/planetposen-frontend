@@ -11,8 +11,12 @@
 
   export let title = 'Info';
   export let type: BadgeType = BadgeType.INFO;
-  export let icon: string = badgeIcons[type];
 
+  if (title === 'CONFIRMED') {
+    type = BadgeType.SUCCESS;
+  }
+
+  $: icon = badgeIcons[type];
   $: badgeClass = `badge ${type}`;
 </script>
 

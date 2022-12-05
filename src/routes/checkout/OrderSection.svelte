@@ -68,7 +68,7 @@
   </tbody>
 </table>
 
-<slot name="button" />
+<!-- <slot name="express-checkout-buttons" /> -->
 
 <style lang="scss" module="scoped">
   table.checkout {

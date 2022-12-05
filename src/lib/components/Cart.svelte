@@ -1,9 +1,11 @@
 <script lang="ts">
   import { count, toggleCart, isOpen } from '../cartStore';
   import IconCart from '../icons/IconCart.svelte';
+
+  $: openClass = $isOpen ? 'open' : '';
 </script>
 
-<div id="cart" class="{$isOpen && 'open'}" on:click="{() => toggleCart()}">
+<div id="cart" class="{openClass}" on:click="{() => toggleCart()}">
   {#if $count > 0}
     <span>{$count}</span>
   {/if}

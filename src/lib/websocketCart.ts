@@ -47,6 +47,19 @@ function sendPayload(payload: object) {
   ws.send(JSON.stringify(payload));
 }
 
+// websocket.onmessage
+function receivePayload(event: MessageEvent) {
+  try {
+    const json = JSON.parse(event?.data || {});
+    const { success, cart } = json as ICartDTO;
+    if (success && cart) cartStore.set(cart);
+  } catch {
+    console.debug('Non parsable message from server: ', event?.data);
+  }
+}
+
+// Called by routes/+layout.svelte on every navigation,
+// if ws is closed we try reconnect
 export function reconnectIfCartWSClosed() {
   const closed = ws?.readyState === 3;
   if (!closed) return;
@@ -88,15 +101,7 @@ export function connectToCart(attempts = 0, maxAttempts = 6) {
     heartbeat();
   };
 
-  ws.onmessage = (event: MessageEvent) => {
-    try {
-      const json = JSON.parse(event?.data || {});
-      const { success, cart } = json;
-      if (success && cart) cartStore.set(cart);
-    } catch {
-      console.debug('Non parsable message from server: ', event?.data);
-    }
-  };
+  ws.onmessage = (event) => receivePayload(event);
 
   ws.onclose = () => {
     const seconds = attempts ** 2;
