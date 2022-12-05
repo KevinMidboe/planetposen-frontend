@@ -1,8 +1,8 @@
 <svg width="49" height="48" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
   <g transform="translate(24,24)">
-    <g class="CheckWarning-checkGroup" opacity="0" style="animation-delay: 700ms">
+    <g class="loading-group CheckWarning" opacity="0" style="animation-delay: 700ms">
       <path
-        class="CheckWarning-exclamation"
+        class="loading-icon"
         fill="none"
         d="M 0 -12 v 15 m 0 6 v 3"
         stroke="#FFC107"
@@ -15,7 +15,7 @@
     </g>
   </g>
   <path
-    class="CheckWarning-circle"
+    class="loading-circle"
     fill="none"
     stroke="#FFC107"
     stroke-width="2"

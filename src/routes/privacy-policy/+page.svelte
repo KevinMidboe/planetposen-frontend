@@ -176,4 +176,8 @@
 
 <style lang="scss" module="scoped">
   @import '../../styles/generic-article.scss';
+
+  a {
+    text-decoration: underline;
+  }
 </style>

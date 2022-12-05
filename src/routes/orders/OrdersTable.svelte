@@ -55,6 +55,19 @@
 <style lang="scss" module="scoped">
   @import '../../styles/media-queries.scss';
 
+  h2 {
+    // text-decoration: underline;
+    font-size: 1.2rem;
+
+    .section-count {
+      background-color: rgba(0,0,0,0.15);
+      padding: 0.3rem 0.4rem;
+      margin-left: 0.5rem;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+    }
+  }
+
   table {
     width: 100%;
     border-collapse: collapse;

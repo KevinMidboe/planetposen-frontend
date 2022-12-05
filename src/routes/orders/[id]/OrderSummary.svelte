@@ -28,16 +28,27 @@
 </ul>
 
 <style lang="scss">
-  @import './styles-order-page.scss';
+  .label {
+    color: grey;
+  }
+
+  span.name {
+    text-transform: capitalize;
+  }
 
   ul {
     width: 100%;
+    list-style: none;
+    padding-left: 0;
+    margin-top: 0;
   }
 
   li {
+    padding: 0.4rem 0;
     display: inline-flex;
     align-items: flex-start;
     flex-direction: column;
+    white-space: pre;
 
     &:not(:last-of-type) {
       margin-right: 3rem;

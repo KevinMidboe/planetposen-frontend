@@ -1,8 +1,8 @@
 <svg width="49" height="48" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
   <g transform="translate(24,24)">
-    <g class="CheckError-checkGroup" opacity="0" style="animation-delay: 700ms">
+    <g class="loading-group CheckError" opacity="0" style="animation-delay: 700ms">
       <path
-        class="CheckError-cross"
+        class="loading-icon"
         fill="none"
         d="M -10 -10 l 20 20 M -10 10 l 20 -20"
         stroke="#FF6245"
@@ -15,7 +15,7 @@
     </g>
   </g>
   <path
-    class="CheckError-circle"
+    class="loading-circle"
     fill="none"
     stroke="#FF6245"
     stroke-width="2"

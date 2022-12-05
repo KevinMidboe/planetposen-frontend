@@ -1,8 +1,8 @@
 <svg width="49" height="48" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
   <g transform="translate(24,24)">
-    <g class="CheckSuccess-checkGroup" opacity="0" style="animation-delay: 700ms">
+    <g class="loading-group CheckSuccess" opacity="0" style="animation-delay: 700ms">
       <path
-        class="CheckSuccess-check"
+        class="loading-icon"
         fill="none"
         d="M-10 1.5c0 0 6.5 6 6.5 6c0 0 13.5-13 13.5-13"
         stroke="#24B47E"
@@ -15,7 +15,7 @@
     </g>
   </g>
   <path
-    class="CheckSuccess-circle"
+    class="loading-circle"
     fill="none"
     stroke="#24B47E"
     stroke-width="2"

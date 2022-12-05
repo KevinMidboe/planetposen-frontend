@@ -1,3 +1,18 @@
+.loading-group {
+  -webkit-animation: fadeIn 1s linear both;
+  animation: fadeIn 1s linear both;
+}
+
+.loading-icon {
+  -webkit-animation: drawCheckmark 1s linear both;
+  animation: drawCheckmark 1s linear both;
+}
+
+.loading-circle {
+  -webkit-animation: checkmarkCircleShimmer 1s linear both, drawCircle 1s linear both;
+  animation: checkmarkCircleShimmer 1s linear both, drawCircle 1s linear both;
+}
+
 @-webkit-keyframes fadeIn {
   0% {
     opacity: 0;
@@ -120,27 +135,6 @@
     -webkit-transform: translate(24px, 24px) rotate(325deg);
     transform: translate(24px, 24px) rotate(325deg);
   }
-}
-
-.CheckSuccess-checkGroup,
-.CheckError-checkGroup,
-.CheckWarning-checkGroup {
-  -webkit-animation: fadeIn 1s linear both;
-  animation: fadeIn 1s linear both;
-}
-
-.CheckSuccess-check,
-.CheckError-cross,
-.CheckWarning-exclamation {
-  -webkit-animation: drawCheckmark 1s linear both;
-  animation: drawCheckmark 1s linear both;
-}
-
-.CheckSuccess-circle,
-.CheckError-circle,
-.CheckWarning-circle {
-  -webkit-animation: checkmarkCircleShimmer 1s linear both, drawCircle 1s linear both;
-  animation: checkmarkCircleShimmer 1s linear both, drawCircle 1s linear both;
 }
 
 @-webkit-keyframes drawCircle {
