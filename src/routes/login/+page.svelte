@@ -6,9 +6,9 @@
   let password: string;
   let displayMessage: string | null;
 
-  function postLogin(event: any) {
+  function postLogin(event: SubmitEvent) {
     displayMessage = null;
-    const formData = new FormData(event.target);
+    const formData = new FormData(event.target as HTMLFormElement);
     const data = {};
     formData.forEach((value, key) => (data[key] = value));
 

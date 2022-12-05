@@ -1,6 +1,4 @@
-import { dev } from '$app/environment';
-import { env } from '$env/dynamic/private';
-import type { IProductResponse } from '$lib/interfaces/ApiResponse';
+import type { IProductsDTO } from '$lib/interfaces/ApiResponse';
 
 const domain = 'planet.schleppe.cloud';
 const pages: Array<ISitemapPage> = [

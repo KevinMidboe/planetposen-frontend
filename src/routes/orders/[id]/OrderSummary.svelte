@@ -13,7 +13,7 @@
 
   <li>
     <span class="label">Customer</span>
-    <span class="name">{order.customer.firstname} {order.customer.lastname}</span>
+    <span class="name">{order.customer.first_name} {order.customer.last_name}</span>
   </li>
 
   <li>

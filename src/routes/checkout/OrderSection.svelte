@@ -21,23 +21,23 @@
 
   <tbody>
     {#if $cart.length}
-      {#each $cart as order}
+      {#each $cart as cartItem}
         <tr>
           <td>
             <div class="line-order">
-              <a href="/shop/{order.product_no}"><span>{order.name}</span></a>
-              <span class="subtext">Størrelse: {order.size}</span>
+              <a href="/shop/{cartItem.product_no}"><span>{cartItem.name}</span></a>
+              <span class="subtext">Størrelse: {cartItem.size}</span>
             </div>
           </td>
           <td>
             <QuantitySelect
-              bind:value="{order.quantity}"
+              bind:value="{cartItem.quantity}"
               hideButtons="{true}"
-              on:decrement="{() => decrementProductInCart(order.lineitem_id)}"
-              on:increment="{() => incrementProductInCart(order.lineitem_id)}"
+              on:decrement="{() => decrementProductInCart(cartItem.lineitem_id)}"
+              on:increment="{() => incrementProductInCart(cartItem.lineitem_id)}"
             />
           </td>
-          <td>Nok {order.quantity * order.price}</td>
+          <td>Nok {cartItem.quantity * cartItem.price}</td>
         </tr>
       {/each}
     {:else}

@@ -1,24 +1,23 @@
 <script lang="ts">
   import CircleCheckmark from '$lib/icons/CircleCheckmark.svelte';
 
-  import { mockProducts } from '$lib/utils/mock';
   import type { PageServerData } from './$types';
-  import type { IProduct } from '$lib/interfaces/IProduct';
+  import type { ILineItem, IOrder } from '$lib/interfaces/IOrder';
 
-  function subTotal(products: Array<IProduct>) {
+  function subTotal(lineItems: Array<ILineItem> = []) {
     let total = 0;
-    products.forEach((product) => (total = total + product.price * product.quantity));
+    lineItems.forEach((lineItem) => (total = total + lineItem.price * lineItem.quantity));
     return total;
   }
 
   export let data: PageServerData;
   const id = data.id as string;
   const email = data.email as string;
+  const order = data.order as IOrder;
+
   // export let currentRoute;
   // const id = currentRoute?.namedParams?.id;
   // const email = currentRoute?.queryParams?.email;
-
-  const products = mockProducts(Math.floor(Math.random() * 8) + 1);
 </script>
 
 <section class="order-confirmation">
@@ -31,14 +30,14 @@
       A payment to PLANETPOSEN, AS will appear on your statement with order number:
       <span class="underline">{id}</span>.
     </p>
-    <p>Order receipt has been email to: <span class="underline">{email}</span></p>
+    <p>En ordrebekreftelse er sent til: <span class="underline">{email}</span></p>
   </div>
 
   <div class="order-receipt">
-    {#each products as product}
+    {#each order?.lineItems as lineItem}
       <p>
-        <code>{product.name} x{product.quantity}</code>
-        <code>{product.currency} {product.price * product.quantity}</code>
+        <code>{lineItem.name} x{lineItem.quantity}</code>
+        <code>NOK {lineItem.price * lineItem.quantity}</code>
       </p>
     {/each}
     <p>
@@ -48,7 +47,7 @@
 
     <p>
       <code>Total</code>
-      <code>NOK {subTotal(products)}</code>
+      <code>NOK {subTotal(order?.lineItems)}</code>
     </p>
   </div>
 </section>

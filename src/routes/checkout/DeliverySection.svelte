@@ -11,11 +11,16 @@
 
 <div class="personalia">
   <Input id="email" bind:value="{email}" label="E-postaddresse" autocomplete="email" />
-  <Input id="firstName" bind:value="{firstName}" label="Fornavn" autocomplete="given-name" />
-  <Input id="lastName" bind:value="{lastName}" label="Etternavn" autocomplete="family-name" />
+  <Input id="first_name" bind:value="{firstName}" label="Fornavn" autocomplete="given-name" />
+  <Input id="last_name" bind:value="{lastName}" label="Etternavn" autocomplete="family-name" />
 
-  <Input id="address" bind:value="{address}" label="Gateadresse" autocomplete="address-line1" />
-  <Input id="zipCode" bind:value="{zipCode}" label="Postnummer" autocomplete="postal-code" />
+  <Input
+    id="street_address"
+    bind:value="{address}"
+    label="Gateadresse"
+    autocomplete="address-line1"
+  />
+  <Input id="zip_code" bind:value="{zipCode}" label="Postnummer" autocomplete="postal-code" />
   <Input id="city" bind:value="{city}" label="By" autocomplete="address-level2" />
 
   <div id="personalia-submit-button">

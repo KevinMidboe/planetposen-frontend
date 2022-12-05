@@ -1,5 +1,6 @@
 // import type IProduct from './IProduct';
 // import type BadgeType from './BadgeType';
+import type ICustomer from './ICustomer';
 
 export interface IStripePayment {
   amount: number;
@@ -26,17 +27,8 @@ export interface IOrder {
   created?: Date;
 }
 
-export interface ICustomer {
-  city: string;
-  customer_no: string;
-  email: string;
-  firstname: string;
-  lastname: string;
-  streetaddress: string;
-  zipcode: number;
-}
-
 export interface ILineItem {
+  sku_id: number;
   image: string;
   name: string;
   price: number;

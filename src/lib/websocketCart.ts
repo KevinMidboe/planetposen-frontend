@@ -1,5 +1,6 @@
 import { dev } from '$app/environment';
 import { cart as cartStore } from './cartStore';
+import type { ICartDTO } from './interfaces/ApiResponse';
 
 const WS_HOST = '127.0.0.1';
 const WS_PORT = 30010;
