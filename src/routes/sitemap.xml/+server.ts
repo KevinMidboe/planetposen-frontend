@@ -1,6 +1,4 @@
-import { dev } from '$app/environment';
-import { env } from '$env/dynamic/private';
-import type { IProductResponse } from '$lib/interfaces/ApiResponse';
+import type { IProductsDTO } from '$lib/interfaces/ApiResponse';
 
 const domain = 'planet.schleppe.cloud';
 const pages: Array<ISitemapPage> = [
@@ -54,15 +52,10 @@ function sitemapPages(): string {
 }
 
 async function sitemapShopPages(): Promise<string> {
-  let url = `/api/products`;
-  if (dev || env.API_HOST) {
-    url = (env.API_HOST || 'http://localhost:30010').concat(url);
-  }
+  const res = await fetch('/api/v1/products');
+  const productResponse: IProductsDTO = await res.json();
 
-  const res = await fetch(url);
-  const products: IProductResponse = await res.json();
-
-  return products?.products
+  return productResponse?.products
     ?.map((product) =>
       buildSitemapUrl(`/shop/${product.product_no}`, String(product.updated), 'daily')
     )

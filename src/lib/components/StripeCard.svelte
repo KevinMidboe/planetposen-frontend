@@ -1,11 +1,15 @@
 <script lang="ts">
-  import { onDestroy, onMount } from 'svelte';
-  import { loadStripe } from '@stripe/stripe-js/pure';
-  import type { Stripe } from '@stripe/stripe-js';
-  import { cart } from '../cartStore';
+  import { onMount } from 'svelte';
+  import stripeApi from '$lib/stripe/index';
+  import type { StripeCardElement } from '@stripe/stripe-js/types';
 
-  function mountCard() {
-    const elements = stripe.elements();
+  export let card: StripeCardElement;
+  export let stripeApiKey: string;
+
+  async function mountCard() {
+    let stripe = await stripeApi.load(stripeApiKey);
+    const elements = stripe?.elements();
+    if (!elements) return;
 
     const options = {
       hidePostalCode: true,
@@ -27,61 +31,9 @@
     card.mount(cardElement);
   }
 
-  // function makeIntent() {
-  //   let url = "/api/payment/stripe";
-  //   if (window.location.href.includes("localhost"))
-  //     url = "http://localhost:30010".concat(url);
+  onMount(() => mountCard());
 
-  //   fetch(url, {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({
-  //       cart: $cart
-  //     })
-  //   })
-  //     .then((resp) => resp.json())
-  //     .then((data) => (clientSecret = data.paymentIntent.clientSecret));
-  // }
-
-  function pay() {
-    stripe
-      .confirmCardPayment(clientSecret, {
-        payment_method: {
-          card,
-          billing_details: {
-            name: 'Kevin Testost'
-          }
-        }
-      })
-      .then((result) => {
-        if (result.error) {
-          confirmDiag.innerText = result.error.message || 'Unexpected payment ERROR!';
-        } else {
-          if (result.paymentIntent.status === 'succeeded') {
-            confirmDiag.innerText = 'Confirmed transaction!';
-          }
-        }
-      });
-  }
-
-  async function initStripe() {
-    window.addEventListener('submit-stripe-payment', pay, false);
-
-    loadStripe.setLoadParameters({ advancedFraudSignals: false });
-    stripe = await loadStripe('pk_test_YiU5HewgBoClZCwHdhXhTxUn');
-    mountCard();
-    // makeIntent();
-  }
-
-  onMount(() => initStripe());
-  // onDestroy(() => window.removeEventListener('submit-stripe-payment', null))
-
-  let stripe: Stripe;
-  let card;
   let cardElement: HTMLElement;
-  let clientSecret: string;
   let confirmDiag: HTMLElement;
 </script>
 
@@ -96,7 +48,6 @@
 
   .card {
     // padding: 1rem;
-    margin: 0 0.5rem;
     border: 2px solid black;
 
     @include desktop {

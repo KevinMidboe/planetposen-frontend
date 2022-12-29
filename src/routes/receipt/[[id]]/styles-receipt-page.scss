@@ -1,7 +1,7 @@
 @import '../../../styles/media-queries.scss';
 
 .order-confirmation {
-  margin: 6rem auto 0;
+  margin: 10rem auto 0;
   display: grid;
   place-items: center;
   padding: 0 0.5rem;
@@ -9,8 +9,6 @@
   @include mobile {
     margin-top: 3rem;
   }
-
-  // @include pageMargin;
 
   @include tablet {
     padding: 0 1rem;
@@ -31,8 +29,4 @@
   padding: 1rem;
   margin: 1rem 0;
   text-align: center;
-
-  .underline {
-    text-decoration: underline;
-  }
 }

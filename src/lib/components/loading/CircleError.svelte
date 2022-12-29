@@ -1,8 +1,8 @@
 <svg width="49" height="48" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
   <g transform="translate(24,24)">
-    <g class="CheckError-checkGroup" opacity="0" style="animation-delay: 700ms">
+    <g class="loading-group CheckError" opacity="0">
       <path
-        class="CheckError-cross"
+        class="loading-icon"
         fill="none"
         d="M -10 -10 l 20 20 M -10 10 l 20 -20"
         stroke="#FF6245"
@@ -10,12 +10,11 @@
         stroke-linecap="round"
         stroke-linejoin="round"
         stroke-dasharray="28 28"
-        stroke-dashoffset="28"
-        style="animation-delay: 700ms"></path>
+        stroke-dashoffset="28"></path>
     </g>
   </g>
   <path
-    class="CheckError-circle"
+    class="loading-circle"
     fill="none"
     stroke="#FF6245"
     stroke-width="2"
@@ -25,8 +24,7 @@
     stroke-dasharray="145 145"
     stroke-linejoin="round"
     stroke-miterlimit="1"
-    transform="translate(24,24) rotate(-35)"
-    style="animation-delay: 700ms"></path>
+    transform="translate(24,24) rotate(-35)"></path>
 </svg>
 
 <style lang="scss" module="scoped">

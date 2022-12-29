@@ -39,9 +39,13 @@
 </table>
 
 <style lang="scss">
-  // @import "../styles/global.scss";
   @import '../../../styles/media-queries.scss';
-  @import './styles-order-page.scss';
+
+  h2 {
+    width: 100%;
+    font-size: 1.5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  }
 
   table {
     width: 100%;
@@ -63,23 +67,20 @@
     .image-column {
       width: 4rem;
       max-width: 4rem;
-      margin: 0 0.5rem;
+
+      @include desktop {
+        margin: 0 0.5rem;
+      }
     }
 
     td,
     th {
-      white-space: nowrap;
       padding: 0.4rem 0.6rem;
     }
 
     tbody {
-      a {
-        font-size: inherit;
-      }
-
       img {
         width: 4rem;
-        height: 4rem;
         border-radius: 0.4rem;
       }
 
@@ -102,11 +103,5 @@
         display: none;
       }
     }
-
-    // @include mobile {
-    //   tr > *:last-child, tr > :nth-child(4) {
-    //     display: none;
-    //   }
-    // }
   }
 </style>

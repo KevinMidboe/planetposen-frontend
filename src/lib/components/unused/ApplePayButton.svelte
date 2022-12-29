@@ -1,85 +1,89 @@
 <script lang="ts">
-  function getApplePaySession(validationURL: string) {
-    const options = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ validationURL })
-    };
+  // function getApplePaySession(validationURL: string) {
+  //   const options = {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify({ validationURL })
+  //   };
 
-    return fetch('/api/applepay/validateSession', options).then((resp) => resp.json());
-  }
+  //   return fetch('/api/applepay/validateSession', options).then((resp) => resp.json());
+  // }
 
-  function makeApplePayPaymentTransaction(payment: object) {
-    const options = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ payment })
-    };
+  // function makeApplePayPaymentTransaction(payment: object) {
+  //   const options = {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify({ payment })
+  //   };
 
-    return fetch('/api/applepay/pay', options).then((resp) => resp.json());
-  }
+  //   return fetch('/api/applepay/pay', options).then((resp) => resp.json());
+  // }
 
   function createPaymentRequest() {
-    const paymentRequest = {
-      countryCode: 'NO',
-      currencyCode: 'NOK',
-      shippingMethods: [
-        {
-          label: 'Free Shipping',
-          amount: 0.0,
-          identifier: 'free',
-          detail: 'Delivers in five business days'
-        },
-        {
-          label: 'Express Shipping',
-          amount: 5.0,
-          identifier: 'express',
-          detail: 'Delivers in two business days'
-        }
-      ],
-      lineItems: [
-        {
-          label: 'Shipping',
-          amount: 0.0
-        }
-      ],
-      total: {
-        label: 'Apple Pay Example',
-        amount: 8.99
-      },
-      supportedNetworks: ['amex', 'discover', 'masterCard', 'visa'],
-      merchantCapabilities: ['supports3DS'],
-      requiredShippingContactFields: ['postalAddress', 'email']
-    };
-
-    const session = new ApplePaySession(6, paymentRequest);
-
-    session.onvalidatemerchant = (event) => {
-      console.log('Validate merchante');
-      console.log('event: ', event);
-
-      const validationURL = event.validationURL;
-      this.getApplePaySession(validationURL).then((response) => {
-        console.log('response from getApplePaySession:', response);
-        session.completeMerchantValidation(response);
-      });
-    };
-
-    session.onpaymentauthorized = (event) => {
-      this.makeApplePayPaymentTransaction(event.payment).then((response) => {
-        console.log('response from pay:', response);
-
-        if (response.approved) session.completePayment(ApplePaySession.STATUS_SUCCESS);
-        else session.completePayment(ApplePaySession.STATUS_FAILURE);
-      });
-    };
-
-    session.begin();
+    return true;
   }
+
+  // function createPaymentRequest() {
+  //   const paymentRequest = {
+  //     countryCode: 'NO',
+  //     currencyCode: 'NOK',
+  //     shippingMethods: [
+  //       {
+  //         label: 'Free Shipping',
+  //         amount: 0.0,
+  //         identifier: 'free',
+  //         detail: 'Delivers in five business days'
+  //       },
+  //       {
+  //         label: 'Express Shipping',
+  //         amount: 5.0,
+  //         identifier: 'express',
+  //         detail: 'Delivers in two business days'
+  //       }
+  //     ],
+  //     lineItems: [
+  //       {
+  //         label: 'Shipping',
+  //         amount: 0.0
+  //       }
+  //     ],
+  //     total: {
+  //       label: 'Apple Pay Example',
+  //       amount: 8.99
+  //     },
+  //     supportedNetworks: ['amex', 'discover', 'masterCard', 'visa'],
+  //     merchantCapabilities: ['supports3DS'],
+  //     requiredShippingContactFields: ['postalAddress', 'email']
+  //   };
+
+  //   const session = new ApplePaySession(6, paymentRequest);
+
+  //   session.onvalidatemerchant = (event) => {
+  //     console.log('Validate merchante');
+  //     console.log('event: ', event);
+
+  //     const validationURL = event.validationURL;
+  //     this.getApplePaySession(validationURL).then((response) => {
+  //       console.log('response from getApplePaySession:', response);
+  //       session.completeMerchantValidation(response);
+  //     });
+  //   };
+
+  //   session.onpaymentauthorized = (event) => {
+  //     this.makeApplePayPaymentTransaction(event.payment).then((response) => {
+  //       console.log('response from pay:', response);
+
+  //       if (response.approved) session.completePayment(ApplePaySession.STATUS_SUCCESS);
+  //       else session.completePayment(ApplePaySession.STATUS_FAILURE);
+  //     });
+  //   };
+
+  //   session.begin();
+  // }
 </script>
 
 <div

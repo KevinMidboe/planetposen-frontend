@@ -1,14 +1,11 @@
 <script lang="ts">
   import LinkArrow from '$lib/components/LinkArrow.svelte';
+  import { buildApiUrl } from '$lib/utils/apiUrl';
 
   export let isAdmin = false;
 
   function logout() {
-    let url = '/api/logout';
-    if (window?.location?.href.includes('localhost')) {
-      url = 'http://localhost:30010'.concat(url);
-    }
-
+    const url = buildApiUrl('/api/v1/logout');
     fetch(url, { method: 'POST' }).then((resp) => {
       resp.status === 200 && window.location.reload();
     });
@@ -40,7 +37,13 @@
 
       <li>Org nummer: 994 749 765</li>
 
-      <li>Kode:&nbsp;<a class="link" href="https://github.com/kevinmidboe">kevinmidboe</a></li>
+      <li>
+        Kode:&nbsp;<a
+          class="link"
+          href="https://github.com/search?q=user%3Akevinmidboe+planetposen&type=repositories"
+          >github.com</a
+        >
+      </li>
     </ul>
   </section>
 </footer>

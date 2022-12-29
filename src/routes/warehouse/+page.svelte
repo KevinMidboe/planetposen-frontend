@@ -2,6 +2,8 @@
   import { goto } from '$app/navigation';
   import ProductList from './WarehouseProductList.svelte';
   import Button from '$lib/components/Button.svelte';
+  import PageMeta from '$lib/components/PageMeta.svelte';
+  import { buildApiUrl } from '$lib/utils/apiUrl';
   import type { IProduct } from '$lib/interfaces/IProduct';
   import type { PageData } from './$types';
 
@@ -9,22 +11,18 @@
   const products = data.products as Array<IProduct>;
 
   async function createProduct() {
-    let url = '/api/product';
-    if (window.location.href.includes('localhost')) {
-      url = 'http://localhost:30010'.concat(url);
-    }
-
+    const url = buildApiUrl('/api/v1/product');
     fetch(url, { method: 'POST' })
       .then((resp) => resp.json())
       .then((response) => {
-        console.log('response::', response);
         const { product } = response;
-        goto(`/warehouse/${product.product_no} `);
+        goto(`/warehouse/${product?.product_no} `);
       });
   }
   console.log('warehouse:', products);
 </script>
 
+<PageMeta title="Warehouse" description="View and edit products in warehouse/stock" />
 <div class="warehouse-page">
   <h1>Warehouse</h1>
 

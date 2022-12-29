@@ -51,7 +51,6 @@
 </table>
 
 <style lang="scss">
-  // @import "../styles/global.scss";
   @import '../../styles/media-queries.scss';
 
   table {
@@ -85,7 +84,10 @@
     .image-column {
       width: 4rem;
       max-width: 4rem;
-      margin: 0 0.5rem;
+
+      @include desktop {
+        margin: 0 0.5rem;
+      }
     }
 
     .name-and-price > p {
@@ -98,7 +100,6 @@
 
     td,
     th {
-      white-space: nowrap;
       padding: 0.4rem 0.6rem;
     }
 
@@ -109,13 +110,7 @@
 
       img {
         width: 4rem;
-        height: 4rem;
         border-radius: 0.4rem;
-      }
-
-      .image-column {
-        display: grid;
-        place-items: center;
       }
 
       tr {
@@ -127,12 +122,6 @@
         }
       }
     }
-
-    // @include mobile {
-    //   tr > *:first-child {
-    //     display: none;
-    //   }
-    // }
 
     @include mobile {
       tr > *:last-child,

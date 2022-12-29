@@ -1,60 +1,78 @@
 <script lang="ts">
-  import CircleCheckmark from '$lib/icons/CircleCheckmark.svelte';
+  import { page } from '$app/stores';
+  import CircleCheckmark from '$lib/components/loading/CircleCheckmark.svelte';
+  import CircleError from '$lib/components/loading/CircleError.svelte';
 
-  import { mockProducts } from '$lib/utils/mock';
   import type { PageServerData } from './$types';
-  import type { IProduct } from '$lib/interfaces/IProduct';
+  import type { ILineItem, IOrder } from '$lib/interfaces/IOrder';
+  import CircleWarning from '$lib/components/loading/CircleWarning.svelte';
 
-  function subTotal(products: Array<IProduct>) {
+  function subTotal(lineItems: Array<ILineItem> = []) {
     let total = 0;
-    products.forEach((product) => (total = total + product.price * product.quantity));
+    lineItems.forEach((lineItem) => (total = total + lineItem.price * lineItem.quantity));
     return total;
   }
 
-  export let data: PageServerData;
-  const id = data.id as string;
-  const email = data.email as string;
-  // export let currentRoute;
-  // const id = currentRoute?.namedParams?.id;
-  // const email = currentRoute?.queryParams?.email;
+  let id: string;
+  let email: string;
+  let order: IOrder;
 
-  const products = mockProducts(Math.floor(Math.random() * 8) + 1);
+  const { data } = $page;
+  if (data) {
+    id = data.id as string;
+    email = data.email || (data?.order?.customer?.email as string);
+    order = data.order as IOrder;
+  }
 </script>
 
 <section class="order-confirmation">
-  <CircleCheckmark />
+  {#if order.status === 'SUCCESS' || order.status === 'CONFIRMED'}
+    <CircleCheckmark />
+  {:else if order.status === 'CANCELLED' || order.status === 'REJECTED'}
+    <CircleError />
+  {:else}
+    <CircleWarning />
+  {/if}
 
-  <h1>Takk for din bestilling!</h1>
+  {#if order.status === 'SUCCESS' || order.status === 'CONFIRMED'}
+    <h1>Takk for din bestilling!</h1>
+  {:else}
+    <h1>Bestilling ikke gjennomført!</h1>
+  {/if}
 
   <div class="order-description">
     <p>
       A payment to PLANETPOSEN, AS will appear on your statement with order number:
       <span class="underline">{id}</span>.
     </p>
-    <p>Order receipt has been email to: <span class="underline">{email}</span></p>
+    <p>En ordrebekreftelse er sent til: <span class="underline">{email}</span></p>
   </div>
 
   <div class="order-receipt">
-    {#each products as product}
+    {#each order?.lineItems as lineItem}
       <p>
-        <code>{product.name} x{product.quantity}</code>
-        <code>{product.currency} {product.price * product.quantity}</code>
+        <code>{lineItem.name} x{lineItem.quantity}</code>
+        <code>NOK {lineItem.price * lineItem.quantity}</code>
       </p>
     {/each}
     <p>
       <code>Shipping</code>
-      <code>NOK 79</code>
+      <code>NOK 75</code>
     </p>
 
     <p>
       <code>Total</code>
-      <code>NOK {subTotal(products)}</code>
+      <code>NOK {subTotal(order?.lineItems)}</code>
     </p>
   </div>
 </section>
 
 <style lang="scss">
   @import './styles-receipt-page.scss';
+
+  .order-description .underline {
+    text-decoration: underline;
+  }
 
   .order-receipt {
     background-color: #f7f7f7;

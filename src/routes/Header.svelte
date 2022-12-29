@@ -97,11 +97,11 @@
     font-size: 1.8rem;
   }
 
-  .corner img {
-    width: 2em;
-    height: 2em;
-    object-fit: contain;
-  }
+  // .corner img {
+  //   width: 2em;
+  //   height: 2em;
+  //   object-fit: contain;
+  // }
 
   nav {
     display: flex;

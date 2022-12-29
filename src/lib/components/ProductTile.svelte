@@ -2,7 +2,6 @@
   import type { IProduct } from '$lib/interfaces/IProduct';
 
   export let product: IProduct;
-  export let large = false;
 </script>
 
 <a href="/shop/{product?.product_no}" class="product-tile">
@@ -12,15 +11,13 @@
       product?.primary_color === '#231B1D' ? '#f3efeb' : '#37301e'
     }`}"
   >
-    {#if !large}
-      <h3>{product?.name}</h3>
-    {/if}
+    <h3>{product?.name}</h3>
 
-    <div class="{`image-frame ${large ? 'large' : null}`}">
+    <div class="image-frame">
       <img src="{product?.image}" alt="{product?.name}" />
     </div>
 
-    {#if !large}
+    {#if product?.subtext?.length > 3}
       <p class="subtext">{product?.subtext}</p>
     {/if}
   </div>
@@ -73,34 +70,16 @@
       display: grid;
       place-items: center;
 
-      &.large img {
-        width: 90%;
-      }
-
       img {
         margin: 3rem 0;
         width: 66%;
         transition: all 0.6s ease;
 
         @include mobile {
-          width: 75%;
+          margin: 2rem 0;
+          width: 90%;
         }
       }
     }
-
-    // TODO grid view on mobile
-    // @include mobile {
-    //   margin: 0.5rem;
-    //   padding: 0.5rem;
-
-    //   h3 {
-    //     margin: 0;
-    //   }
-
-    //   .image-frame img {
-    //     width: 82%;
-    //     margin: 1rem 0;
-    //   }
-    // }
   }
 </style>

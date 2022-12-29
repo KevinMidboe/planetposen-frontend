@@ -3,6 +3,7 @@
   import Button from '$lib/components/Button.svelte';
   import Badge from '$lib/components/Badge.svelte';
   import BadgeType from '$lib/interfaces/BadgeType';
+  import { buildApiUrl } from '$lib/utils/apiUrl';
 
   export let product: IProduct;
   let table: HTMLElement;
@@ -13,61 +14,44 @@
     success: boolean;
   }
 
+  const setEditIndex = (index: number, event: MouseEvent) => {
+    if (!table.contains(event.target as Node)) {
+      console.log('outside?', index);
+      // editingVariationIndex = -1;
+    } else {
+      console.log('inside');
+    }
+    editingVariationIndex = index;
+  };
   const resetEditingIndex = () => (editingVariationIndex = -1);
   const updateProductsVariations = (response: ISkuResponse) => {
-    product.variations = response?.skus;
+    product.variations = response?.skus || [];
+    editingVariationIndex = product.variations.length - 1;
   };
 
   function setDefault(variation: IVariation) {
     if (!product.variations) return;
 
-    let url = `/api/product/${product.product_no}/sku/${variation.sku_id}/default_price`;
-    if (window?.location?.href.includes('localhost')) {
-      url = 'http://localhost:30010'.concat(url);
-    }
+    const url = buildApiUrl(
+      `/api/v1/product/${product.product_no}/sku/${variation.sku_id}/default`
+    );
+    fetch(url, { method: 'POST' })
+      .then((resp) => resp.json())
+      .then((response) => (product.variations = response?.skus));
+  }
 
+  function addSkuVariation() {
+    const url = buildApiUrl(`/api/v1/product/${product.product_no}/sku`);
     fetch(url, { method: 'POST' })
       .then((resp) => resp.json())
       .then(updateProductsVariations);
   }
 
-  function addSkuVariation() {
-    // ADD OVER API - update product.variations with result --> set edit
-    // const newSku: IProductVariation = {
-    //   sku_id: null,
-    //   stock: 0,
-    //   size: null,
-    //   price: 0,
-    //   default_price: false
-    // }
-
-    // if (!product.variations || product.variations.length === 0) {
-    //   product.variations = []
-    // }
-
-    // product.variations.push(newSku)
-    // editingVariationIndex = product.variations.length - 1
-
-    let url = `/api/product/${product.product_no}/sku`;
-    if (window?.location?.href.includes('localhost')) {
-      url = 'http://localhost:30010'.concat(url);
-    }
-
-    fetch(url, { method: 'POST' })
-      .then((resp) => resp.json())
-      .then(updateProductsVariations)
-      .then(() => (editingVariationIndex = product.variations.length - 1));
-  }
-
   function saveSkuVariation(variation: IVariation) {
-    let url = `/api/product/${product.product_no}/sku/${variation?.sku_id}`;
-    if (window?.location?.href.includes('localhost')) {
-      url = 'http://localhost:30010'.concat(url);
-    }
-
+    const url = buildApiUrl(`/api/v1/product/${product.product_no}/sku/${variation?.sku_id}`);
     const { stock, size, price } = variation;
     const options = {
-      method: 'PATCH',
+      method: 'PUT',
       body: JSON.stringify({ stock, price, size }),
       headers: {
         'Content-Type': 'application/json'
@@ -81,29 +65,14 @@
   }
 
   function deleteVariation(variation: IVariation) {
-    console.log('delete it using api', variation);
-    let url = `/api/product/${product.product_no}/sku/${variation?.sku_id}`;
-    if (window?.location?.href.includes('localhost')) {
-      url = 'http://localhost:30010'.concat(url);
-    }
-
+    const url = buildApiUrl(`/api/v1/product/${product.product_no}/sku/${variation?.sku_id}`);
     fetch(url, { method: 'DELETE' })
       .then((resp) => resp.json())
       .then(updateProductsVariations)
       .then(() => resetEditingIndex());
   }
-
-  function disableEditIfClickOutsideTable(event: MouseEvent) {
-    console.log('target:', event.target);
-    if (!table.contains(event.target as Node)) {
-      console.log('outside?');
-    } else {
-      console.log('inside');
-    }
-  }
 </script>
 
-<svelte:window on:click="{disableEditIfClickOutsideTable}" />
 <table class="pricing" bind:this="{table}">
   <thead>
     <tr>
@@ -123,36 +92,31 @@
   <tbody>
     {#if product?.variations?.length}
       {#each product?.variations as variation, index}
-        {#if editingVariationIndex !== index}
-          <tr
-            on:click="{() => (editingVariationIndex = index)}"
-            on:drop="{() => setDefault(variation)}"
-            on:dragover|preventDefault
-          >
-            <td>
+        <tr
+          class="edit"
+          on:click="{(event) => setEditIndex(index, event)}"
+          on:drop="{() => setDefault(variation)}"
+          on:dragover|preventDefault
+        >
+          <td>
+            {#if editingVariationIndex !== index}
               <span>Nok {variation.price}</span>
-              {#if variation.default_price}
-                <div draggable="true">
-                  <Badge title="Default price" type="{BadgeType.PENDING}" icon="{''}" />
-                </div>
-              {/if}
-            </td>
+            {:else}
+              <span>Nok <input type="number" bind:value="{variation.price}" /></span>
+            {/if}
+
+            {#if variation.default_price}
+              <div draggable="true">
+                <Badge title="Default price" type="{BadgeType.PENDING}" icon="" />
+              </div>
+            {/if}
+          </td>
+          {#if editingVariationIndex !== index}
             <td>{variation.stock}</td>
             <td>{variation.size}</td>
             <td></td>
             <td></td>
-          </tr>
-        {:else}
-          <tr class="edit" on:drop="{() => setDefault(variation)}" on:dragover|preventDefault>
-            <td>
-              <span>Nok <input type="number" bind:value="{variation.price}" /></span>
-
-              {#if variation.default_price}
-                <div draggable="true">
-                  <Badge title="Default price" type="{BadgeType.PENDING}" icon="{''}" />
-                </div>
-              {/if}
-            </td>
+          {:else}
             <td><input type="number" bind:value="{variation.stock}" /></td>
             <td><input bind:value="{variation.size}" /></td>
             <td class="cta">
@@ -161,8 +125,8 @@
             <td class="cta">
               <button on:click="{() => deleteVariation(variation)}">🗑️</button>
             </td>
-          </tr>
-        {/if}
+          {/if}
+        </tr>
       {/each}
     {/if}
   </tbody>

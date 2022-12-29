@@ -1,16 +1,5 @@
 import { redirect } from '@sveltejs/kit';
-import validOrderId from '$lib/utils/validOrderId';
 import type { Actions, PageServerLoad } from './$types';
-
-export const load: PageServerLoad = ({ params, url }) => {
-  const { id } = params;
-  const email = url.searchParams.get('email');
-
-  return {
-    id,
-    email
-  };
-};
 
 export const actions: Actions = {
   default: async ({ request }) => {
@@ -19,12 +8,8 @@ export const actions: Actions = {
     const orderId = data.get('order-id');
     const email = data.get('order-email');
 
-    // TODO replace with posting form (json) to backend to check??
-    // also return statusCode from the backend directly.
-    if (validOrderId(String(orderId)) && email) {
-      const receiptUrl = `/receipt/${orderId}?email=${email}`;
-      throw redirect(303, receiptUrl);
-    }
+    const receiptUrl = `/receipt/${orderId}?email=${email}`;
+    throw redirect(303, receiptUrl);
 
     return { success: false };
   }

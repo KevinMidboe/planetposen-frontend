@@ -24,7 +24,7 @@
   });
 </script>
 
-<ul>
+<ul class="product-variations">
   {#each variations as variation}
     <li
       class="{`variation ${variation.sku_id === selectedVariation?.sku_id && 'selected'}`}"
@@ -37,7 +37,7 @@
 </ul>
 
 <style lang="scss">
-  ul {
+  ul.product-variations {
     list-style-type: none;
     padding-left: 0;
 
@@ -58,11 +58,6 @@
 
       &.selected {
         border-color: black;
-      }
-
-      p {
-        padding: 0;
-        margin: 0;
       }
     }
   }

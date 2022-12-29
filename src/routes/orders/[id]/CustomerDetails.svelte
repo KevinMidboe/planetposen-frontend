@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { ICustomer } from '$lib/interfaces/IOrder';
+  import type ICustomer from '$lib/interfaces/ICustomer';
 
   export let customer: ICustomer;
 
@@ -16,17 +16,17 @@
 
     <li>
       <span class="label">Name</span>
-      <span class="name">{customer.firstname} {customer.lastname}</span>
+      <span class="name">{customer.first_name} {customer.last_name}</span>
     </li>
 
     <li>
       <span class="label">Street address</span>
-      <span>{customer.streetaddress}</span>
+      <span>{customer.street_address}</span>
     </li>
 
     <li>
       <span class="label">Zip & City</span>
-      <span>{zeroPadZip(customer.zipcode)}, {customer.city}</span>
+      <span>{zeroPadZip(customer.zip_code)}, {customer.city}</span>
     </li>
   </ul>
 </section>

@@ -1,5 +1,6 @@
 import { dev } from '$app/environment';
 import { cart as cartStore } from './cartStore';
+import type { ICartDTO } from './interfaces/ApiResponse';
 
 const WS_HOST = '127.0.0.1';
 const WS_PORT = 30010;
@@ -46,6 +47,19 @@ function sendPayload(payload: object) {
   ws.send(JSON.stringify(payload));
 }
 
+// websocket.onmessage
+function receivePayload(event: MessageEvent) {
+  try {
+    const json = JSON.parse(event?.data || {});
+    const { success, cart } = json as ICartDTO;
+    if (success && cart) cartStore.set(cart);
+  } catch {
+    console.debug('Non parsable message from server: ', event?.data);
+  }
+}
+
+// Called by routes/+layout.svelte on every navigation,
+// if ws is closed we try reconnect
 export function reconnectIfCartWSClosed() {
   const closed = ws?.readyState === 3;
   if (!closed) return;
@@ -71,12 +85,16 @@ export function connectToCart(attempts = 0, maxAttempts = 6) {
 
   // TODO user feedback when max retries to reconnect, should refresh
   // increasing timeout by a factor
-  const planetId = getCookie('planetId');
-  if (!planetId) return console.log('no cookie');
+  const planet_id = getCookie('planet_id');
+  if (!planet_id) {
+    const seconds = attempts ** 2;
+    console.debug(`no cookie. Reconnect will be attempted in ${seconds} seconds.`);
+    wsReconnectTimeout = setTimeout(() => connectToCart(attempts, maxAttempts), seconds * 1000);
+  }
 
   let url = `wss://${window.location.hostname}/ws/cart`;
   if (dev) {
-    url = `ws://${WS_HOST}:${WS_PORT}/ws/cart?planetId=${planetId}`;
+    url = `ws://${WS_HOST}:${WS_PORT}/ws/cart?planet_id=${planet_id}`;
   }
 
   ws = new WebSocket(url);
@@ -87,15 +105,7 @@ export function connectToCart(attempts = 0, maxAttempts = 6) {
     heartbeat();
   };
 
-  ws.onmessage = (event: MessageEvent) => {
-    try {
-      const json = JSON.parse(event?.data || {});
-      const { success, cart } = json;
-      if (success && cart) cartStore.set(cart);
-    } catch {
-      console.debug('Non parsable message from server: ', event?.data);
-    }
-  };
+  ws.onmessage = (event) => receivePayload(event);
 
   ws.onclose = () => {
     const seconds = attempts ** 2;

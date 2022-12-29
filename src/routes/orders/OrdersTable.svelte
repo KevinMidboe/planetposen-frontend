@@ -1,8 +1,10 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
   import Badge from '$lib/components/Badge.svelte';
+  import Time from '$lib/components/Time.svelte';
   import type { IOrderSummary } from '$lib/interfaces/IOrder';
 
+  export let title: string;
   export let orders: Array<IOrderSummary>;
 
   function navigate(order: IOrderSummary) {
@@ -10,15 +12,16 @@
   }
 </script>
 
+<h2>{title} <span class="section-count">{orders?.length || 0}</span></h2>
 {#if orders?.length}
   <table>
     <thead>
       <tr>
         <th>Amount</th>
         <th>Status</th>
-        <th>Order ID</th>
         <th>Customer</th>
         <th>Date</th>
+        <th>Order ID</th>
         <th>Receipt</th>
       </tr>
     </thead>
@@ -29,18 +32,12 @@
           <td>NOK {order.order_sum}</td>
 
           <td>
-            <Badge title="{order.status}" type="{order?.status?.type}" />
+            <Badge title="{order.status}" />
           </td>
 
-          <td>{order.order_id}</td>
           <td>{order.first_name} {order.last_name}</td>
-          <td
-            >{order?.created
-              ? new Intl.DateTimeFormat('nb-NO', { dateStyle: 'short', timeStyle: 'short' }).format(
-                  new Date(order.created)
-                )
-              : ''}</td
-          >
+          <td><Time time="{order?.created}" /></td>
+          <td>{order.order_id}</td>
           <td>
             <a href="receipt/{order.order_id}?email={order.email}">🧾</a>
           </td>
@@ -54,6 +51,18 @@
 
 <style lang="scss" module="scoped">
   @import '../../styles/media-queries.scss';
+
+  h2 {
+    font-size: 1.2rem;
+
+    .section-count {
+      background-color: rgba(0, 0, 0, 0.15);
+      padding: 0.3rem 0.4rem;
+      margin-left: 0.5rem;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+    }
+  }
 
   table {
     width: 100%;
@@ -92,8 +101,14 @@
       }
     }
 
+    th:last-of-type,
+    td:last-of-type {
+      text-align: center;
+    }
+
     @include mobile {
-      tr > *:first-child {
+      tr > *:nth-child(4),
+      tr > *:nth-child(5) {
         display: none;
       }
     }

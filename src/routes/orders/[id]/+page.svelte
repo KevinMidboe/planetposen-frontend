@@ -9,10 +9,9 @@
 
   export let data: PageServerData;
   let order = data.order as IOrder;
-  console.log('order:', order);
 
   function orderSubTotal() {
-    if (!order || order.lineItems?.length === 0) return;
+    if (!order || order?.lineItems?.length === 0) return;
 
     let sum = 0;
     order.lineItems.forEach((lineItem) => (sum = sum + lineItem.quantity * lineItem.price));
@@ -21,20 +20,21 @@
   }
 </script>
 
-<h1>Order: {order.orderid}</h1>
+<h1>Order id: {order?.orderid}</h1>
 <div class="order">
-  <!-- <p>Order: {JSON.stringify(order)}</p> -->
   <h2 class="price"><span class="amount">{orderSubTotal()}.00</span> Nok</h2>
 
   <OrderSummary order="{order}" />
   <OrderProducts lineItems="{order?.lineItems}" />
 
-  <PaymentDetails order="{order}" />
+  <PaymentDetails payment="{order?.payment}" />
   <CustomerDetails customer="{order?.customer}" />
-  <TrackingDetails shipping="{order?.shipping}" />
+  <TrackingDetails shipping="{order?.shipping}" orderId="{order?.orderid}" />
 </div>
 
 <style lang="scss">
+  @import '../../../styles/media-queries.scss';
+
   h2.price {
     font-size: 1.5rem;
     color: grey;
