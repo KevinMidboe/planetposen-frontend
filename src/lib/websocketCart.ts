@@ -85,12 +85,16 @@ export function connectToCart(attempts = 0, maxAttempts = 6) {
 
   // TODO user feedback when max retries to reconnect, should refresh
   // increasing timeout by a factor
-  const planetId = getCookie('planetId');
-  if (!planetId) return console.log('no cookie');
+  const planet_id = getCookie('planet_id');
+  if (!planet_id) {
+    const seconds = attempts ** 2;
+    console.debug(`no cookie. Reconnect will be attempted in ${seconds} seconds.`);
+    wsReconnectTimeout = setTimeout(() => connectToCart(attempts, maxAttempts), seconds * 1000);
+  }
 
   let url = `wss://${window.location.hostname}/ws/cart`;
   if (dev) {
-    url = `ws://${WS_HOST}:${WS_PORT}/ws/cart?planetId=${planetId}`;
+    url = `ws://${WS_HOST}:${WS_PORT}/ws/cart?planet_id=${planet_id}`;
   }
 
   ws = new WebSocket(url);
