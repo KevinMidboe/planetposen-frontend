@@ -27,6 +27,18 @@
     </p>
 
     <p>
+      <strong>Hvordan bruker vi informasjonskaplser?</strong>
+      Denne nettbutikken er open-source så all kode du intragerer med kan søkes igjennom på github.com.
+      Om du lurer på hvordan vi bruker informasjonskapsler kan du ta en titt på koden her:
+      <a
+        class="link"
+        href="https://github.com/search?q=planet_id+user%3Akevinmidboe&type=Code"
+        target="_blank"
+        rel="noreferrer">https://github.com/search?q=planet_id+user%3Akevinmidboe&type=Code</a
+      >
+    </p>
+
+    <p>
       <strong>Tredjepart informasjonskapsler</strong>
       Planetposen.no lagrer ingen informasjonskapsler tilknyttet noen tredjepart.
     </p>
