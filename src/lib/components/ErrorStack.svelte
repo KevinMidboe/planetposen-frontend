@@ -28,7 +28,8 @@
         class="error-card"
         data-status="{index === currentCard ? 'current' : 'waiting'}"
         style="{offsetTop(index)}"
-        in:slide out:fly="{{ y: 100, duration: flyoutDuration }}"
+        in:slide
+        out:fly="{{ y: 100, duration: flyoutDuration }}"
       >
         <button
           class="dismiss"
