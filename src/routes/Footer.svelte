@@ -40,7 +40,8 @@
       <li>
         Kode:&nbsp;<a
           class="link"
-          href="https://github.com/search?q=user%3Akevinmidboe+planetposen&type=repositories"
+          target="_blank"
+          href="https://github.com/search?q=user%3Akevinmidboe+sort%3Aupdated+planetposen&type=repositories"
           >github.com</a
         >
       </li>
