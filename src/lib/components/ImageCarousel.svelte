@@ -80,7 +80,7 @@ color: ${product?.primary_color === '#231B1D' ? '#f3efeb' : '#37301e'}`;
           if (entries[0]?.isIntersecting) {
             const target = entries[0]?.target as HTMLElement;
             const targetIndex = Number(target?.dataset?.index);
-            if (targetIndex === NaN) return;
+            if (isNaN(targetIndex)) return;
 
             selected = targetIndex;
             updateHeight();

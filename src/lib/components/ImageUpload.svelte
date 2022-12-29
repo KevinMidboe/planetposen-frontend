@@ -5,7 +5,7 @@
 
   const dispatch = createEventDispatcher();
 
-  let dragOver: boolean = false;
+  let dragOver = false;
   let fileInput: HTMLInputElement;
 
   /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -23,7 +23,7 @@
       await uploadImage(file);
     }
 
-    setTimeout(() => (fileInput.value = ''), 3000);
+    setTimeout(() => resetUploadInput, 3000);
   }
 
   function resetUploadInput() {
@@ -80,20 +80,21 @@
     // uploadImage(file)
   }
 
-  function onFileDrop(event: Event) {
-    const { files } = event?.dataTransfer;
+  function onFileDrop(event: DragEvent) {
+    const files: FileList | undefined = event?.dataTransfer?.files;
     if (files) {
       fileInput.files = files;
     }
   }
 
-  $: hasFiles = fileInput?.files?.length > 0 || false;
+  $: hasFiles = (fileInput?.files && fileInput?.files?.length > 0) || false;
 </script>
 
 <div
   id="drop_zone"
   class="{dragOver ? 'highlighted' : ''}"
   on:click="{() => fileInput.click()}"
+  on:keypress="{(e) => e.code === 'Enter' && fileInput.click()}"
   on:drop|preventDefault="{onFileDrop}"
   on:dragover|preventDefault="{() => (dragOver = true)}"
   on:dragenter|preventDefault="{() => (dragOver = true)}"
@@ -118,8 +119,11 @@
   <span>Files found to upload:</span>
 
   <div class="thumbnails">
-    {#each fileInput.files || [] as file}
-      <img src="{window.URL.createObjectURL(file)}" />
+    {#each fileInput.files || [] as file, index}
+      <img
+        src="{window.URL.createObjectURL(file)}"
+        alt="{`Upload asset thumbnail number ${index + 1}`}"
+      />
     {/each}
   </div>
 

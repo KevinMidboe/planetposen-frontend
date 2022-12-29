@@ -1,7 +1,7 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
 
-  export let pointLeft: boolean = false;
+  export let pointLeft = false;
   let defaultRoute = '/shop';
 
   function navigateBack() {

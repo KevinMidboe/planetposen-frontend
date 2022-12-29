@@ -1,6 +1,5 @@
 <script lang="ts">
-  import { fade, fly, slide } from 'svelte/transition';
-  import type IOrderValidationError from '$lib/interfaces/IOrderValidationError';
+  import { fly, slide } from 'svelte/transition';
 
   export let errors: string[] = [];
   let currentCard = 0;

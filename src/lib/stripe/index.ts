@@ -3,8 +3,8 @@ import { loadStripe } from '@stripe/stripe-js/pure';
 import type {
   ConfirmCardPaymentData,
   PaymentIntentResult,
-  Stripe,
-  StripeError
+  Stripe
+  // StripeError
 } from '@stripe/stripe-js';
 
 let stripeInstance: Stripe;

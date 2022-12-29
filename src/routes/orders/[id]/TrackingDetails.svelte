@@ -49,10 +49,9 @@
     else updateShipment();
   }
 
-  let edit: boolean = false;
+  let edit = false;
   let trackingCode: string = shipping?.tracking_code;
   let trackingLink: string = shipping?.tracking_link;
-  let courier: string = shipping?.courier;
   let selectedCourier: any = shipping?.courier_id;
   let couriers: ICourier[];
 </script>
@@ -63,7 +62,7 @@
   {#if shipping}
     <ul class="property-list">
       <li>
-        <span class="label" for="courier">Tracking company</span>
+        <label class="label" for="courier">Tracking company</label>
         {#if !edit}
           <span>{shipping.courier}</span>
         {:else if couriers?.length > 0}

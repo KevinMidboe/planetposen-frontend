@@ -5,7 +5,7 @@
   import FrontTextImageBubble from '$lib/components/FrontTextImageBubble.svelte';
   // import FrontProductGallery from '$lib/components/FrontProductGallery.svelte';
   import type IFrontTextImage from '$lib/interfaces/IFrontTextImage';
-  import type { IProduct } from '$lib/interfaces/IProduct';
+  // import type { IProduct } from '$lib/interfaces/IProduct';
   import type IFrontText from '$lib/interfaces/IFrontText';
 
   const textImages: Array<IFrontTextImage> = [

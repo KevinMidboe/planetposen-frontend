@@ -4,7 +4,6 @@
   import PaymentDetails from './PaymentDetails.svelte';
   import CustomerDetails from './CustomerDetails.svelte';
   import TrackingDetails from './TrackingDetails.svelte';
-  import ShipmentProgress from '$lib/components/ShipmentProgress.svelte';
   import type { IOrder } from '$lib/interfaces/IOrder';
   import type { PageServerData } from './$types';
 

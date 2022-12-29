@@ -1,13 +1,13 @@
 <script lang="ts">
   import ProductTile from './ProductTile.svelte';
-  import Button from './Button.svelte';
+  // import Button from './Button.svelte';
   import type { IProduct } from '$lib/interfaces/IProduct';
   import LinkArrow from './LinkArrow.svelte';
 
   export let products: IProduct[];
   export let title: string;
-  export let textColor: string = 'black';
-  export let backgroundColor: string = 'white';
+  export let textColor = 'black';
+  export let backgroundColor = 'white';
 
   let galleryStyles = `background-color: ${backgroundColor}; color: ${textColor}`;
 </script>

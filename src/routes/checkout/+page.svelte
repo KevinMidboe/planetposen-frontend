@@ -14,7 +14,6 @@
   import { buildApiUrl } from '$lib/utils/apiUrl';
   import type { StripeCardElement } from '@stripe/stripe-js/types';
   import type ICustomer from '$lib/interfaces/ICustomer';
-  import type IOrderValidationError from '$lib/interfaces/IOrderValidationError';
   import type {
     IOrderCreateDTO,
     IOrderCreateResponse,
@@ -44,7 +43,7 @@
 
   function handleSubmitOrderError(error: IOrderCreateUnsuccessfullResponse) {
     console.log('got error from order api!', error, error?.validationErrors);
-    const { success, validationErrors } = error;
+    const { validationErrors } = error;
 
     if (!validationErrors || validationErrors?.length == 0) {
       errors.push('Ukjent feil ved plassering av ordre.');
