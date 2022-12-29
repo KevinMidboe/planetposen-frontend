@@ -5,7 +5,13 @@
   $: openClass = $isOpen ? 'open' : '';
 </script>
 
-<div id="cart" class="{openClass}" on:click="{() => toggleCart()}">
+<div
+  id="cart"
+  class="{openClass}"
+  on:click="{() => toggleCart()}"
+  on:keypress="{(e) => e.code === 'Enter' && toggleCart()}"
+  tabindex="0"
+>
   {#if $count > 0}
     <span>{$count}</span>
   {/if}
