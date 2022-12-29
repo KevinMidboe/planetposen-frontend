@@ -1,10 +1,12 @@
 <script lang="ts">
-  import ProductTile from '../ProductTile.svelte';
+  import ProductTile from '$lib/components/ProductTile.svelte';
   import ProductVariationSelect from '$lib/components/ProductVariationSelect.svelte';
   import QuantitySelect from '$lib/components/QuantitySelect.svelte';
   import SizesSection from './SizesSection.svelte';
   import Button from '$lib/components/Button.svelte';
   import PageMeta from '$lib/components/PageMeta.svelte';
+  import ImageCarousel from '$lib/components/ImageCarousel.svelte';
+  import IconArrow from '$lib/icons/IconArrow.svelte';
   import type { PageData } from './$types';
   import type { IProduct, IVariation } from '$lib/interfaces/IProduct';
 
@@ -42,13 +44,15 @@
 </script>
 
 <PageMeta title="{pageTitle}" description="{product.description}" />
+
+<IconArrow pointLeft="{true}" />
 <div class="product-container">
-  <ProductTile product="{product}" large="{true}" />
+  <ImageCarousel product="{product}" />
 
   <div class="details">
     <h2 class="name">{product.name}</h2>
-    <p class="subtext">{product.subtext}</p>
-    <p class="subtext">{product.description}</p>
+    <p>{product.subtext}</p>
+    <p class="description">{product.description}</p>
     <p class="price">NOK {selectedVariation?.price} (Ink. Moms)</p>
 
     <ProductVariationSelect
@@ -95,6 +99,10 @@
     .details {
       .name {
         font-size: 2rem;
+      }
+
+      .description {
+        white-space: pre-line;
       }
 
       .price {

@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { PageData } from './$types';
-  import ProductTile from './ProductTile.svelte';
+  import ProductTile from '$lib/components/ProductTile.svelte';
   import PageMeta from '$lib/components/PageMeta.svelte';
   import type { IProduct } from '$lib/interfaces/IProduct';
 

@@ -5,7 +5,7 @@ import type { PageServerLoad } from './$types';
 export const load: PageServerLoad = async ({ fetch, params }) => {
   const { id } = params;
 
-  const res = await fetch(`/api/product/${id}`);
+  const res = await fetch(`/api/v1/product/${id}`);
   const productResponse: IProductDTO = await res.json();
   const jsonld = generateProductJsonLd(productResponse?.product);
 
