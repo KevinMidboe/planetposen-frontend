@@ -37,7 +37,13 @@
 
       <li>Org nummer: 994 749 765</li>
 
-      <li>Kode:&nbsp;<a class="link" href="https://github.com/kevinmidboe">kevinmidboe</a></li>
+      <li>
+        Kode:&nbsp;<a
+          class="link"
+          href="https://github.com/search?q=user%3Akevinmidboe+planetposen&type=repositories"
+          >github.com</a
+        >
+      </li>
     </ul>
   </section>
 </footer>
