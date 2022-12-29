@@ -2,11 +2,6 @@
 // import type BadgeType from './BadgeType';
 import type ICustomer from './ICustomer';
 
-export interface IStripePayment {
-  amount: number;
-  currency: string;
-}
-
 export interface IOrderSummary {
   created: Date;
   email: string;
@@ -22,6 +17,7 @@ export interface IOrder {
   lineItems: ILineItem[];
   orderid: string;
   shipping: IShipping;
+  payment: IStripePayment;
   status: string;
   updated?: Date;
   created?: Date;
@@ -41,6 +37,7 @@ export interface IShipping {
   tracking_code: string;
   tracking_link: string;
   user_notified: null;
+  has_api: boolean;
 }
 
 export interface IOrdersLineitem {
@@ -58,4 +55,16 @@ export interface ITracking {
   trackingCode: string;
   trackingCompany: string;
   trackingLink: string;
+}
+
+export interface IStripePayment {
+  amount: number;
+  amount_captured: number;
+  amount_received: number;
+  amount_refunded: number;
+  created: Date;
+  stripe_transaction_id: string;
+  stripe_status: string;
+  type: string;
+  updated: Date;
 }

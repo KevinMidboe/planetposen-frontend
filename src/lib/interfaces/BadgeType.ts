@@ -1,9 +1,12 @@
 enum BadgeType {
-  SUCCESS = 'success',
-  WARNING = 'warning',
-  ERROR = 'error',
-  PENDING = 'pending',
-  INFO = 'info'
+  SUCCESS = 'SUCCESS',
+  WARNING = 'WARNING',
+  REFUNDED = 'REFUNDED',
+  ERROR = 'ERROR',
+  PENDING = 'PENDING',
+  INFO = 'INFO',
+  INITIATED = 'INITIATED',
+  NOT_FOUND = 'NOT_FOUND'
 }
 
 export default BadgeType;

@@ -3,7 +3,7 @@ export interface IProduct {
   name: string;
   subtext?: string;
   description?: string;
-  image: string;
+  images?: IImage[];
   primary_color?: string;
 
   variation_count?: string;
@@ -22,4 +22,10 @@ export interface IVariation {
   default_price: boolean;
   updated?: Date;
   created?: Date;
+}
+
+export interface IImage {
+  image_id: number;
+  url: string;
+  default_image: boolean;
 }
