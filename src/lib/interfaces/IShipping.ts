@@ -24,19 +24,19 @@ export interface IShipmentEvent {
 }
 
 export interface IShipmentResponse {
-  shipment_id: string
-  order_id: string
-  courier: string
-  has_api: boolean
-  courier_id: number
-  tracking_code: string
-  tracking_link: string
-  user_notified: boolean
+  shipment_id: string;
+  order_id: string;
+  courier: string;
+  has_api: boolean;
+  courier_id: number;
+  tracking_code: string;
+  tracking_link: string;
+  user_notified: boolean;
 }
 
 export interface ICourier {
-  courier_id: number
-  name: string
-  website: string
-  has_api: boolean
+  courier_id: number;
+  name: string;
+  website: string;
+  has_api: boolean;
 }

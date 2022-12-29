@@ -237,7 +237,8 @@
         align-items: center;
       }
 
-      li span:first-of-type, li label:first-of-type {
+      li span:first-of-type,
+      li label:first-of-type {
         display: inline-block;
         margin-bottom: auto;
         min-width: 30%;

@@ -30,7 +30,7 @@
 
     fetch(url, options)
       .then((resp) => resp.json())
-      .then((response) => shipping = response?.shipment || shipping);
+      .then((response) => (shipping = response?.shipment || shipping));
   }
 
   function addShipment() {
