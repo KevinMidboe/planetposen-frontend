@@ -6,7 +6,7 @@ function structureProduct(product: IProduct) {
       '@context': 'https://schema.org/',
       '@type': 'Product',
       name: `${product.name} - ${variation.size}`,
-      image: [product.image],
+      image: product.images?.map((image) => image.url),
       description: product.description,
       sku: `${product.product_no}-${variation.sku_id}`,
       productID: product.product_no,
