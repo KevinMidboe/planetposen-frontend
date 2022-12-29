@@ -19,7 +19,7 @@
 
   <div>
     <h2>Images</h2>
-    <img src="{product.image}" />
+    <img src="{product.image}" alt="Default product" />
   </div>
 
   <div class="variations">
@@ -48,9 +48,9 @@
       <option>Wine</option>
     </select>
 
-    <Input label="Price" type="number" />
-    <Input label="Stock" type="number" />
-    <input type="checkbox" checked />
+    <Input label="Price" type="number" value="" />
+    <Input label="Stock" type="number" value="" />
+    <input type="checkbox" checked value="" />
   </div>
 </div>
 

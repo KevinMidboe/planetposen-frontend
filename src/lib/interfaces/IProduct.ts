@@ -4,6 +4,7 @@ export interface IProduct {
   subtext?: string;
   description?: string;
   images?: IImage[];
+  image?: string;
   primary_color?: string;
 
   variation_count?: string;
