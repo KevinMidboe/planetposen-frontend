@@ -1,8 +1,11 @@
 <script lang="ts">
-  import CircleCheckmark from '$lib/icons/CircleCheckmark.svelte';
+  import { page } from '$app/stores';
+  import CircleCheckmark from '$lib/components/loading/CircleCheckmark.svelte';
+  import CircleError from '$lib/components/loading/CircleError.svelte';
 
   import type { PageServerData } from './$types';
   import type { ILineItem, IOrder } from '$lib/interfaces/IOrder';
+  import CircleWarning from '$lib/components/loading/CircleWarning.svelte';
 
   function subTotal(lineItems: Array<ILineItem> = []) {
     let total = 0;
@@ -10,20 +13,32 @@
     return total;
   }
 
-  export let data: PageServerData;
-  const id = data.id as string;
-  const email = data.email as string;
-  const order = data.order as IOrder;
+  let id: string;
+  let email: string;
+  let order: IOrder;
 
-  // export let currentRoute;
-  // const id = currentRoute?.namedParams?.id;
-  // const email = currentRoute?.queryParams?.email;
+  const { data } = $page;
+  if (data) {
+    id = data.id as string;
+    email = data.email || (data?.order?.customer?.email as string);
+    order = data.order as IOrder;
+  }
 </script>
 
 <section class="order-confirmation">
-  <CircleCheckmark />
+  {#if order.status === 'SUCCESS' || order.status === 'CONFIRMED'}
+    <CircleCheckmark />
+  {:else if order.status === 'CANCELLED' || order.status === 'REJECTED'}
+    <CircleError />
+  {:else}
+    <CircleWarning />
+  {/if}
 
-  <h1>Takk for din bestilling!</h1>
+  {#if order.status === 'SUCCESS' || order.status === 'CONFIRMED'}
+    <h1>Takk for din bestilling!</h1>
+  {:else}
+    <h1>Bestilling ikke gjennomført!</h1>
+  {/if}
 
   <div class="order-description">
     <p>
@@ -42,7 +57,7 @@
     {/each}
     <p>
       <code>Shipping</code>
-      <code>NOK 79</code>
+      <code>NOK 75</code>
     </p>
 
     <p>
@@ -54,6 +69,10 @@
 
 <style lang="scss">
   @import './styles-receipt-page.scss';
+
+  .order-description .underline {
+    text-decoration: underline;
+  }
 
   .order-receipt {
     background-color: #f7f7f7;
