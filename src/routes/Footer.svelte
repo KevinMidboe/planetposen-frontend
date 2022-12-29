@@ -1,14 +1,11 @@
 <script lang="ts">
   import LinkArrow from '$lib/components/LinkArrow.svelte';
+  import { buildApiUrl } from '$lib/utils/apiUrl';
 
   export let isAdmin = false;
 
   function logout() {
-    let url = '/api/logout';
-    if (window?.location?.href.includes('localhost')) {
-      url = 'http://localhost:30010'.concat(url);
-    }
-
+    const url = buildApiUrl('/api/v1/logout');
     fetch(url, { method: 'POST' }).then((resp) => {
       resp.status === 200 && window.location.reload();
     });

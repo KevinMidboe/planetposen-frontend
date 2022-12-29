@@ -52,7 +52,7 @@ function sitemapPages(): string {
 }
 
 async function sitemapShopPages(): Promise<string> {
-  const res = await fetch('/api/products');
+  const res = await fetch('/api/v1/products');
   const productResponse: IProductsDTO = await res.json();
 
   return productResponse?.products

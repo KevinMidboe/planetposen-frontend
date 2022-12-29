@@ -1,6 +1,7 @@
 <script lang="ts">
   import Button from '$lib/components/Button.svelte';
   import Input from '$lib/components/Input.svelte';
+  import { buildApiUrl } from '$lib/utils/apiUrl';
 
   let username: string;
   let password: string;
@@ -20,11 +21,7 @@
       }
     };
 
-    let url = '/api/login';
-    if (window?.location?.href.includes('localhost')) {
-      url = 'http://localhost:30010'.concat(url);
-    }
-
+    const url = buildApiUrl('/api/v1/login');
     fetch(url, options)
       .then((resp) => {
         const { status } = resp;

@@ -1,11 +1,7 @@
-import { dev } from '$app/environment';
+import { buildApiUrl } from './apiUrl';
 
 export default async function requestSessionCookie() {
-  let url = '/api';
-  if (dev) {
-    url = 'http://localhost:30010'.concat(url);
-  }
-
+  const url = buildApiUrl('/api/v1');
   await fetch(url);
   return true;
 }

@@ -35,9 +35,7 @@ a {
   text-decoration: none;
 
   -webkit-transition: -webkit-transform 0.15s linear;
-  transition: -webkit-transform 0.15s linear;
   transition: transform 0.15s linear;
-  transition: transform 0.15s linear, -webkit-transform 0.15s linear;
   -webkit-transform-origin: 50% 80%;
   transform-origin: 50% 80%;
 }
