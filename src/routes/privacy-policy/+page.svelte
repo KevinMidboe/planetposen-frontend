@@ -33,7 +33,7 @@
 
     <p>
       Kontaktperson: Leigh Midbøe<br />
-      E-post: <a href="mailto:contact@planetposen.no">contact@planetposen.no</a>
+      E-post: <a class="link" href="mailto:contact@planetposen.no">contact@planetposen.no</a>
     </p>
 
     <p>
@@ -176,8 +176,4 @@
 
 <style lang="scss" module="scoped">
   @import '../../styles/generic-article.scss';
-
-  a {
-    text-decoration: underline;
-  }
 </style>

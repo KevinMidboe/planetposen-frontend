@@ -47,6 +47,8 @@ a:hover {
 
 a.link {
   border-bottom: 2px solid var(--color-text) !important;
+  text-decoration: none;
+  display: inline-block;
 }
 
 h1 {
