@@ -1,14 +1,25 @@
 <script lang="ts">
+  import Badge from '$lib/components/Badge.svelte';
+  import Time from '$lib/components/Time.svelte';
   import type { IOrder } from '$lib/interfaces/IOrder';
 
   export let order: IOrder;
-  let paymentMethod: string = Math.random() > 0.5 ? 'Stripe' : 'ApplePay';
 </script>
 
 <ul class="summary-list">
   <li>
+    <span class="label">Status</span>
+    <Badge title="{order.status}" />
+  </li>
+
+  <li>
     <span class="label">Last update</span>
-    <span>{order.updated}</span>
+    <Time time="{order.updated}" />
+  </li>
+
+  <li>
+    <span class="label">Created</span>
+    <Time time="{order.created}" />
   </li>
 
   <li>
@@ -18,12 +29,12 @@
 
   <li>
     <span class="label">Receipt</span>
-    <span><a href="/receipt/{order.orderid}">{order.orderid}</a></span>
+    <a href="/receipt/{order.orderid}" class="link">{order.orderid}</a>
   </li>
 
   <li>
     <span class="label">Payment method</span>
-    <span>{paymentMethod}</span>
+    <span style="text-transform: capitalize;">{order?.payment?.type}</span>
   </li>
 </ul>
 

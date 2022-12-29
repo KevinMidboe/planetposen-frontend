@@ -67,19 +67,20 @@
     .image-column {
       width: 4rem;
       max-width: 4rem;
-      margin: 0 0.5rem;
+
+      @include desktop {
+        margin: 0 0.5rem;
+      }
     }
 
     td,
     th {
-      white-space: nowrap;
       padding: 0.4rem 0.6rem;
     }
 
     tbody {
       img {
         width: 4rem;
-        height: 4rem;
         border-radius: 0.4rem;
       }
 
@@ -102,11 +103,5 @@
         display: none;
       }
     }
-
-    // @include mobile {
-    //   tr > *:last-child, tr > :nth-child(4) {
-    //     display: none;
-    //   }
-    // }
   }
 </style>

@@ -16,8 +16,7 @@ section {
   }
 }
 
-.label,
-.empty {
+.label {
   color: grey;
 }
 
@@ -51,7 +50,6 @@ ul.property-list {
 
   li span:last-of-type {
     @include mobile {
-      min-width: 60%;
       white-space: normal;
       overflow-wrap: break-word;
     }
