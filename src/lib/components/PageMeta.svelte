@@ -4,6 +4,6 @@
 </script>
 
 <svelte:head>
-  <title>{title}</title>
+  <title>{title} | planetposen</title>
   <meta name="description" content="{description}" />
 </svelte:head>
