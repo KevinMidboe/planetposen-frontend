@@ -47,8 +47,8 @@
   input {
     border: 2px solid grey;
     border-radius: 0px;
-    padding: 0.5rem;
-    font-size: 1rem;
+    padding: 0.7em;
+    font-size: 1em;
     box-sizing: border-box;
     width: 100%;
 

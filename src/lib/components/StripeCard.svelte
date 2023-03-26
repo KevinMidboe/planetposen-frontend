@@ -47,7 +47,7 @@
   @import '../../styles/media-queries.scss';
 
   .card {
-    // padding: 1rem;
+    padding: 0.5rem;
     border: 2px solid black;
 
     @include desktop {
