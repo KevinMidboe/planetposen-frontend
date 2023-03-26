@@ -56,7 +56,7 @@
     padding: 1rem;
     width: 100%;
     min-height: 95vh;
-    max-width: 1500px;
+    max-width: 1800px;
     margin: 0 auto;
     box-sizing: border-box;
 
