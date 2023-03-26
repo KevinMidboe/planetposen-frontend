@@ -34,7 +34,7 @@
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 1rem;
 
-    :global(#address) {
+    :global(#street_address) {
       grid-column: span 2;
     }
     :global(#email) {
