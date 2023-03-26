@@ -14,6 +14,10 @@
   color: var(--color-text);
 }
 
+html {
+  font-size: 100%;
+}
+
 body {
   min-height: 100vh;
   margin: 0;
@@ -96,5 +100,16 @@ button:focus:not(:focus-visible) {
 @media (min-width: 720px) {
   h1 {
     font-size: 2.4rem;
+  }
+}
+
+@media screen and (min-width: 1500px) {
+  html {
+    font-size: 110%;
+  }
+}
+@media screen and (min-width: 2000px) {
+  html {
+    font-size: 130%;
   }
 }
