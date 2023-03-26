@@ -19,7 +19,7 @@
             class="order-summary__emphasis skeleton-while-loading"
             data-checkout-subtotal-price-target="4000"
           >
-            Nok { $subTotal }
+            Nok {$subTotal}
           </span>
         </td>
       </tr>
@@ -57,11 +57,8 @@
         </th>
         <td class="price payment-due" data-presentment-currency="NOK">
           <span class="payment-due__currency remove-while-loading">Nok</span>
-          <span
-            class="price skeleton-while-loading--lg"
-            data-checkout-payment-due-target="4000"
-          >
-            { ($subTotal + 75) }
+          <span class="price skeleton-while-loading--lg" data-checkout-payment-due-target="4000">
+            {$subTotal + 75}
           </span>
         </td>
       </tr>
@@ -123,20 +120,22 @@
     }
 
     tfoot {
-      .name, .price {
+      .name,
+      .price {
         padding-top: 3em !important;
         position: relative;
         color: #313131;
       }
 
-      .name::before, .price::before {
+      .name::before,
+      .price::before {
         content: '';
         position: absolute;
         top: 1.5em;
         left: 0;
         width: 100%;
         height: 1px;
-        background-color: rgba(172,172,172,0.34);
+        background-color: rgba(172, 172, 172, 0.34);
       }
     }
   }

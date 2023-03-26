@@ -228,7 +228,7 @@
       width: 52%;
       padding-right: 6%;
       float: left;
-      border-right: 1px solid rgba(0,0,0,0.2);
+      border-right: 1px solid rgba(0, 0, 0, 0.2);
     }
 
     @media (max-width: 999px) {
@@ -275,7 +275,7 @@
         content: '';
         width: 100%;
         height: 2px;
-        background-color: rgba(0,0,0,0.2);
+        background-color: rgba(0, 0, 0, 0.2);
         position: absolute;
         bottom: 0.15em;
         left: 0;
