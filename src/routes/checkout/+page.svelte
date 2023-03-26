@@ -1,6 +1,7 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
   import OrderSection from './OrderSection.svelte';
+  import ExpressSection from './ExpressSection.svelte';
   import DeliverySection from './DeliverySection.svelte';
   import PageMeta from '$lib/components/PageMeta.svelte';
   import CheckoutButton from '$lib/components/Button.svelte';
@@ -143,30 +144,43 @@
 />
 
 <h1>Kassen</h1>
+
 <form class="checkout" bind:this="{form}" on:submit|preventDefault="{postOrder}">
-  <section id="delivery">
-    <h2>Leveringsaddresse</h2>
-    <DeliverySection />
-  </section>
+  <div class="main">
+    <section class="express-checkout" style="display: block;">
+      <h2>Hurtigkasse</h2>
 
-  <section id="order">
-    <h2>Din ordre</h2>
-    <OrderSection />
-  </section>
+      <ExpressSection />
 
-  <section id="payment">
-    <h2>Betalingsinformasjon</h2>
-    <StripeCard bind:card="{card}" stripeApiKey="{stripeApiKey}" />
+      <p style="margin: 0 0 -0.5rem 0.5rem; text-align: left; color: rgba(0,0,0,0.5);">eller</p>
+    </section>
 
-    <div class="pay">
-      <CheckoutButton type="submit" text="Betal" />
-      <div class="payment-state-animation">
-        {#if paymentPromise}
-          <Loading promise="{paymentPromise}" />
-        {/if}
+    <section id="delivery">
+      <h2>Leveringsaddresse</h2>
+      <DeliverySection />
+    </section>
+
+    <section id="payment">
+      <h2>Betalingsinformasjon</h2>
+      <StripeCard bind:card="{card}" stripeApiKey="{stripeApiKey}" />
+
+      <div class="pay">
+        <CheckoutButton type="submit" text="Betal" />
+        <div class="payment-state-animation">
+          {#if paymentPromise}
+            <Loading promise="{paymentPromise}" />
+          {/if}
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
+
+  <aside class="sidebar">
+    <section id="order">
+      <h2>Din ordre</h2>
+      <OrderSection />
+    </section>
+  </aside>
 </form>
 
 <ErrorStack bind:errors="{errors}" />
@@ -175,20 +189,19 @@
   @import '../../styles/media-queries.scss';
 
   form.checkout {
-    display: grid;
-    grid-template-areas:
-      'delivery order'
-      'payment  order';
+    display: flex;
+    flex: 1 0 auto;
+    margin: 0 auto;
+    max-width: 40em;
+    zoom: 1;
+    position: relative;
+    flex-direction: column-reverse;
 
-    grid-gap: 2rem;
-    grid-template-columns: 1fr 1fr;
-
-    @include mobile {
-      grid-template-columns: minmax(0, 1fr);
-      grid-template-areas:
-        'order'
-        'delivery'
-        'payment';
+    @media (min-width: 1000px) {
+      padding: 0 5%;
+      width: 90%;
+      max-width: 78em;
+      flex-direction: row;
     }
   }
 
@@ -202,11 +215,42 @@
     width: 34px;
   }
 
-  #delivery {
-    grid-area: delivery;
+  .main {
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 auto;
+
+    @media (min-width: 750px) {
+      padding-top: 1.5em;
+    }
+
+    @media (min-width: 1000px) {
+      width: 52%;
+      padding-right: 6%;
+      float: left;
+      border-right: 1px solid rgba(0,0,0,0.2);
+    }
+
+    @media (max-width: 999px) {
+      width: 100%;
+    }
   }
-  #order {
-    grid-area: order;
+
+  aside.sidebar {
+    position: relative;
+    display: block;
+    color: #515151;
+
+    @media (min-width: 1000px) {
+      position: sticky;
+      align-self: flex-start;
+      top: 0;
+      width: 38%;
+      padding-left: 4%;
+      background-position: left top;
+      float: right;
+      padding-top: 4em;
+    }
   }
   #payment {
     grid-area: payment;
@@ -225,6 +269,17 @@
       font-weight: 500;
       color: #231f20;
       line-height: 1.1;
+      position: relative;
+
+      &::after {
+        content: '';
+        width: 100%;
+        height: 2px;
+        background-color: rgba(0,0,0,0.2);
+        position: absolute;
+        bottom: 0.15em;
+        left: 0;
+      }
     }
   }
 
