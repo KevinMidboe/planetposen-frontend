@@ -26,7 +26,7 @@
 </script>
 
 <div class="app">
-  <Header {isAdmin} />
+  <Header isAdmin="{isAdmin}" />
 
   <CartModal />
 
@@ -34,7 +34,7 @@
     <slot />
   </main>
 
-  <Footer {isAdmin} />
+  <Footer isAdmin="{isAdmin}" />
 </div>
 
 <style lang="scss">
