@@ -2,16 +2,10 @@
   import { page } from '$app/stores';
   import CircleCheckmark from '$lib/components/loading/CircleCheckmark.svelte';
   import CircleError from '$lib/components/loading/CircleError.svelte';
+  import OrderSection from '../../checkout/OrderSection.svelte';
 
-  import type { PageServerData } from './$types';
-  import type { ILineItem, IOrder } from '$lib/interfaces/IOrder';
+  import type { IOrder } from '$lib/interfaces/IOrder';
   import CircleWarning from '$lib/components/loading/CircleWarning.svelte';
-
-  function subTotal(lineItems: Array<ILineItem> = []) {
-    let total = 0;
-    lineItems.forEach((lineItem) => (total = total + lineItem.price * lineItem.quantity));
-    return total;
-  }
 
   let id: string;
   let email: string;
@@ -23,6 +17,8 @@
     email = data.email || (data?.order?.customer?.email as string);
     order = data.order as IOrder;
   }
+
+  $: subTotal = Math.round((order?.payment?.amount || 1) / 100);
 </script>
 
 <section class="order-confirmation">
@@ -49,21 +45,9 @@
   </div>
 
   <div class="order-receipt">
-    {#each order?.lineItems as lineItem}
-      <p>
-        <code>{lineItem.name} x{lineItem.quantity}</code>
-        <code>NOK {lineItem.price * lineItem.quantity}</code>
-      </p>
-    {/each}
-    <p>
-      <code>Shipping</code>
-      <code>NOK 75</code>
-    </p>
-
-    <p>
-      <code>Total</code>
-      <code>NOK {subTotal(order?.lineItems)}</code>
-    </p>
+    <div class="receipt-box">
+      <OrderSection lineItems="{order?.lineItems}" subTotal="{subTotal}" } />
+    </div>
   </div>
 </section>
 
