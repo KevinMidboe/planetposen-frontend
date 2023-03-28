@@ -14,7 +14,7 @@
   color: var(--color-text);
 }
 
-html {
+body .app main {
   font-size: 100%;
 }
 
@@ -56,11 +56,11 @@ a.link {
 }
 
 h1 {
-  font-size: 2rem;
+  font-size: 2em;
 }
 
 h2 {
-  font-size: 1rem;
+  font-size: 1em;
 }
 
 .no-scroll {
@@ -104,12 +104,12 @@ button:focus:not(:focus-visible) {
 }
 
 @media screen and (min-width: 1500px) {
-  html {
+  body .app main {
     font-size: 110%;
   }
 }
 @media screen and (min-width: 2000px) {
-  html {
-    font-size: 130%;
+  body .app main {
+    font-size: 125%;
   }
 }

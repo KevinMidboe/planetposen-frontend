@@ -1,5 +1,4 @@
 <script lang="ts">
-  import ProductTile from '$lib/components/ProductTile.svelte';
   import ProductVariationSelect from '$lib/components/ProductVariationSelect.svelte';
   import QuantitySelect from '$lib/components/QuantitySelect.svelte';
   import SizesSection from './SizesSection.svelte';
@@ -98,7 +97,7 @@
 
     .details {
       .name {
-        font-size: 2rem;
+        font-size: 2em;
       }
 
       .description {

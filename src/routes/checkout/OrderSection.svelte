@@ -1,16 +1,9 @@
 <script lang="ts">
   import OrderTotalSection from './OrderTotalSection.svelte';
-  import QuantitySelect from '$lib/components/QuantitySelect.svelte';
+  import type ICart from '$lib/interfaces/ICart';
 
-  import { cart, subTotal } from '$lib/cartStore';
-  import { decrementProductInCart, incrementProductInCart } from '$lib/websocketCart';
-
-  const shippingPrice = 75;
-  $: totalPrice = $subTotal + shippingPrice;
-
-  function lineItemClass(id: number) {
-    return `lineitem-${id}`;
-  }
+  export let lineItems: ICart[];
+  export let subTotal: number;
 </script>
 
 <div class="order-summary">
@@ -26,7 +19,7 @@
     </thead>
 
     <tbody data-order-summary-section="line-items">
-      {#each $cart as cartItem}
+      {#each lineItems as lineItem}
         <tr
           class="product"
           data-product-id="6718367989809"
@@ -40,18 +33,18 @@
                 <img
                   alt="Black Googly Eye Puff Print Logo Tee - XS"
                   class="product-thumbnail__image"
-                  src="{cartItem.image}"
+                  src="{lineItem.image}"
                   data-src="//cdn.shopify.com/s/files/1/0023/3789/8540/products/20220718_A24_GooglyEye_Tee_Black_15991x1gray_small.jpg?v=1659020903"
                 />
               </div>
-              <span class="product-thumbnail__quantity" aria-hidden="true">{cartItem.quantity}</span
+              <span class="product-thumbnail__quantity" aria-hidden="true">{lineItem.quantity}</span
               >
             </div>
           </td>
           <th class="product__description" scope="row">
-            <span class="product__description__name order-summary__emphasis">{cartItem.name}</span>
+            <span class="product__description__name order-summary__emphasis">{lineItem.name}</span>
             <span class="product__description__variant order-summary__small-text"
-              >{cartItem.size}</span
+              >{lineItem.size}</span
             >
           </th>
           <td class="product__quantity">
@@ -59,7 +52,7 @@
           </td>
           <td class="product__price">
             <p class="order-summary__emphasis skeleton-while-loading">
-              NOK {cartItem.quantity * cartItem.price}
+              NOK {lineItem.quantity * lineItem.price}
             </p>
           </td>
         </tr>
@@ -68,7 +61,7 @@
     </tbody>
   </table>
 
-  <OrderTotalSection />
+  <OrderTotalSection subTotal="{subTotal}" />
 </div>
 
 <style lang="scss" module="scoped">

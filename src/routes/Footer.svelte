@@ -14,7 +14,7 @@
 
 <footer>
   <section>
-    <h2>Personvern og vilkår</h2>
+    <h1>Personvern og vilkår</h1>
     <ul>
       <li><LinkArrow /><a href="/terms-and-conditions">Betingelser og vilkår</a></li>
       <li><LinkArrow /><a href="/privacy-policy">Personvernerklæring</a></li>
@@ -31,7 +31,7 @@
   </section>
 
   <section>
-    <h2>Kontakt</h2>
+    <h1>Kontakt</h1>
     <ul>
       <li>Epost:&nbsp;<a class="link" href="mailto:post@planetposen.no">post@planetposen.no</a></li>
 
@@ -41,6 +41,7 @@
         Kode:&nbsp;<a
           class="link"
           target="_blank"
+          rel="noreferrer"
           href="https://github.com/search?q=user%3Akevinmidboe+sort%3Aupdated+planetposen&type=repositories"
           >github.com</a
         >
@@ -59,10 +60,6 @@
 
     display: flex;
     justify-content: space-around;
-
-    h2 {
-      font-size: 2.5rem;
-    }
 
     section {
       width: 30%;
@@ -97,7 +94,7 @@
       flex-direction: column;
       padding: 3rem 0.5rem;
 
-      h2 {
+      h1 {
         font-size: 1.8rem;
       }
 

@@ -62,13 +62,14 @@
 <style lang="scss" module="scoped">
   @import '../../styles/media-queries.scss';
 
-  @include desktop {
-    section {
-      margin: 20% 2rem;
-      width: 60%;
+  section {
+    max-width: 600px;
+    margin: auto;
+
+    @include desktop {
+      margin: 20% auto;
     }
   }
-
   .signin-button {
     margin-top: 2rem;
   }

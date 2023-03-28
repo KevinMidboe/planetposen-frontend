@@ -2,16 +2,10 @@
   import { page } from '$app/stores';
   import CircleCheckmark from '$lib/components/loading/CircleCheckmark.svelte';
   import CircleError from '$lib/components/loading/CircleError.svelte';
+  import OrderSection from '../../checkout/OrderSection.svelte';
 
-  import type { PageServerData } from './$types';
-  import type { ILineItem, IOrder } from '$lib/interfaces/IOrder';
+  import type { IOrder } from '$lib/interfaces/IOrder';
   import CircleWarning from '$lib/components/loading/CircleWarning.svelte';
-
-  function subTotal(lineItems: Array<ILineItem> = []) {
-    let total = 0;
-    lineItems.forEach((lineItem) => (total = total + lineItem.price * lineItem.quantity));
-    return total;
-  }
 
   let id: string;
   let email: string;
@@ -23,6 +17,8 @@
     email = data.email || (data?.order?.customer?.email as string);
     order = data.order as IOrder;
   }
+
+  $: subTotal = Math.round((order?.payment?.amount || 1) / 100);
 </script>
 
 <section class="order-confirmation">
@@ -49,21 +45,9 @@
   </div>
 
   <div class="order-receipt">
-    {#each order?.lineItems as lineItem}
-      <p>
-        <code>{lineItem.name} x{lineItem.quantity}</code>
-        <code>NOK {lineItem.price * lineItem.quantity}</code>
-      </p>
-    {/each}
-    <p>
-      <code>Shipping</code>
-      <code>NOK 75</code>
-    </p>
-
-    <p>
-      <code>Total</code>
-      <code>NOK {subTotal(order?.lineItems)}</code>
-    </p>
+    <div class="receipt-box">
+      <OrderSection lineItems="{order?.lineItems}" subTotal="{subTotal}" } />
+    </div>
   </div>
 </section>
 
@@ -75,30 +59,52 @@
   }
 
   .order-receipt {
-    background-color: #f7f7f7;
-    max-width: 500px;
+    --receipt_color: #f7f7f7;
+    --tearOffHeight: 8px;
+    background-color: var(--receipt_color);
+    max-width: 800px;
     width: calc(100% - 4rem);
-    padding: 2rem;
     font-family: monospace;
+    position: relative;
 
-    p {
-      margin: 0.8rem 0;
-      display: flex;
-      justify-content: space-between;
-      border-bottom: 1px solid lightgrey;
+    /* Paper background effect */
+    .receipt-box {
+      height: auto;
+      overflow: hidden;
+      padding: 1rem;
+      box-shadow: 0 3px 5px rgba(0, 0, 0, 0.05);
 
-      &:last-of-type {
-        padding-top: 1.5rem;
-        border-width: 2px;
-      }
-    }
-
-    code {
-      opacity: 0.4;
-      font-size: 1rem;
-
-      &:first-of-type {
-        font-weight: 600;
+      &::after {
+        content: '';
+        height: var(--tearOffHeight);
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: calc(var(--tearOffHeight) * -1);
+        background-color: var(--receipt_color);
+        clip-path: polygon(
+          0% 0%,
+          5% 100%,
+          10% 0%,
+          15% 100%,
+          20% 0%,
+          25% 100%,
+          30% 0%,
+          35% 100%,
+          40% 0%,
+          45% 100%,
+          50% 0%,
+          55% 100%,
+          60% 0%,
+          65% 100%,
+          70% 0%,
+          75% 100%,
+          80% 0%,
+          85% 100%,
+          90% 0%,
+          95% 100%,
+          100% 0%
+        );
       }
     }
   }
