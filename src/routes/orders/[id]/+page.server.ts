@@ -6,7 +6,7 @@ export const load: PageServerLoad = async ({ fetch, params }) => {
   const { id } = params;
 
   const res = await fetch(`/api/v1/order/${id}`);
-  const orderResponse = await res.json();
+  const orderResponse: IOrderDTO = await res.json();
 
   if (orderResponse?.success == false || orderResponse?.order === undefined) {
     console.log('throwing error', orderResponse);
