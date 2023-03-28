@@ -28,6 +28,7 @@
   let card: StripeCardElement;
   let form: HTMLFormElement;
   let errors: string[] = [];
+  let showExpressCheckout = false;
 
   /* eslint-disable @typescript-eslint/no-explicit-any */
   let resolvePaymentPromise: (value: any) => void;
@@ -147,13 +148,15 @@
 
 <form class="checkout" bind:this="{form}" on:submit|preventDefault="{postOrder}">
   <div class="main">
-    <section class="express-checkout" style="display: block;">
-      <h2>Hurtigkasse</h2>
+    {#if showExpressCheckout}
+      <section class="express-checkout" style="display: block;">
+        <h2>Hurtigkasse</h2>
 
-      <ExpressSection />
+        <ExpressSection />
 
-      <p style="margin: 0 0 -0.5rem 0.5rem; text-align: left; color: rgba(0,0,0,0.5);">eller</p>
-    </section>
+        <p style="margin: 0 0 -0.5rem 0.5rem; text-align: left; color: rgba(0,0,0,0.5);">eller</p>
+      </section>
+    {/if}
 
     <section id="delivery">
       <h2>Leveringsaddresse</h2>

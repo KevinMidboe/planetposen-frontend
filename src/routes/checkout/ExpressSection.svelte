@@ -1,6 +1,5 @@
 <script lang="ts">
   import Vipps from '$lib/icons/Vipps.svelte';
-  import ShopPay from '$lib/icons/ShopPay.svelte';
   import ApplePay from '$lib/icons/ApplePay.svelte';
   import PayPal from '$lib/icons/PayPal.svelte';
   import GooglePay from '$lib/icons/GooglePay.svelte';
