@@ -7,7 +7,7 @@
   import CheckoutButton from '$lib/components/Button.svelte';
   import StripeCard from '$lib/components/StripeCard.svelte';
   import ErrorStack from '$lib/components/ErrorStack.svelte';
-  import { cart } from '$lib/cartStore';
+  import { cart, subTotal } from '$lib/cartStore';
   import stripeApi from '$lib/stripe/index';
   import { OrderSubmitUnsuccessfullError } from '$lib/errors/OrderErrors';
   import Loading from '$lib/components/loading/index.svelte';
@@ -178,7 +178,7 @@
   <aside class="sidebar">
     <section id="order">
       <h2>Din ordre</h2>
-      <OrderSection />
+      <OrderSection lineItems="{$cart}" subTotal="{$subTotal}" />
     </section>
   </aside>
 </form>
