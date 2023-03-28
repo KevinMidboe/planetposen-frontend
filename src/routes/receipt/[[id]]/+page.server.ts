@@ -1,5 +1,5 @@
 import { redirect } from '@sveltejs/kit';
-import type { Actions, PageServerLoad } from './$types';
+import type { Actions } from './$types';
 
 export const actions: Actions = {
   default: async ({ request }) => {
@@ -10,8 +10,6 @@ export const actions: Actions = {
 
     const receiptUrl = `/receipt/${orderId}?email=${email}`;
     throw redirect(303, receiptUrl);
-
-    return { success: false };
   }
 };
 

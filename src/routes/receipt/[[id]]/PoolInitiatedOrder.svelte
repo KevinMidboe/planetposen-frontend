@@ -4,7 +4,6 @@
   import { onMount } from 'svelte';
   import CircleLoading from '$lib/components/loading/CircleLoading.svelte';
   import { buildApiUrl } from '$lib/utils/apiUrl';
-  import type { PageServerData } from './$types';
 
   const { data } = $page;
   const id = data?.id as string;
@@ -22,7 +21,7 @@
     goto(url);
   }
 
-  function checkOrder() {
+  async function checkOrder() {
     const url = buildApiUrl(`/api/v1/order/${id}`);
     return fetch(url)
       .then((resp) => resp.json())
