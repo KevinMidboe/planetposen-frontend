@@ -8,34 +8,28 @@ platform:
   arch: amd64
 
 steps:
-  - name: Build project
-    image: node:18
-    commands:
-      - yarn
-      - yarn build
-
   - name: Lint project
     image: node:18
     commands:
       - yarn
       - yarn lint
 
+  - name: Build project
+    image: node:18
+    commands:
+      - yarn
+      - yarn build
+
 ---
 kind: pipeline
 type: docker
-name: Compile docker image
+name: Compile & publish docker image
 
 platform:
   os: linux
   arch: amd64
 
 steps:
-  - name: Build
-    image: node:18
-    commands:
-      - yarn
-      - yarn build
-
   - name: Publish docker image
     image: plugins/docker
     settings:
@@ -63,6 +57,6 @@ trigger:
 
 ---
 kind: signature
-hmac: eac31ba5baf0202b5920c39674cbb95767fe91e8ee36c773e2db78eee31e8879
+hmac: 2578e80da0b7719a6d85be93b4a86803159ba7f320707607df9b579979c66e39
 
 ...
