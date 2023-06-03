@@ -10,19 +10,20 @@
 
   const textImages: Array<IFrontTextImage> = [
     {
-      title: 'Vårt oppdrag',
-      text: 'The new fabulous museum at Kistefos, designed by world renowned architect Bjarke Ingels Group, BIG, opened Wednesday September 18th, 2019. The building has been named the top architectural museum project in the world to open in 2019, by both the Daily Telegraph and Bloomberg.',
+      title: 'Our story',
+      text: 'I started making fabric gift bags as a way to combat the wastefulness of traditional paper packaging. As a lifelong crafter and DIY enthusiast, I wanted to create a product that was both beautiful and sustainable. After experimenting with different materials and designs, I landed on the perfect formula for a reusable fabric gift bag that was both eco-friendly and functional.',
       image: 'https://storage.googleapis.com/planetposen-images/front-kf-1.jpg'
     },
     {
-      title: 'Paper waste and the planet',
-      text: "As the 50th artwork to be included in the park, a site-specific new commission by French artist Pierre Huyghe (b. 1962, Paris) was opened on the 12th of June. The vast permanent work will be the artist's largest site-specific work to date and the most ambitious to ever be conceived for Kistefos.",
+      title: 'Eco-Friendly Materials',
+      text: 'Our bags are made from organic cotton or recycled fabric, both of which are sustainably sourced and responsibly produced. By choosing to use our bags instead of disposable paper or plastic packaging, you are making a positive impact on the environment and reducing your carbon footprint.',
       imageRight: true,
-      image: 'https://storage.googleapis.com/planetposen-images/front-kf-2.jpg'
+      // image: 'https://storage.googleapis.com/planetposen-images/front-kf-2.jpg'
+      image: 'https://storage.googleapis.com/planetposen-images/bags_backyard-upscaled-2.jpeg'
     },
     {
-      title: 'Our goal',
-      text: 'The scenic sculpture park has an impressive collection of works by internationally renowned contemporary artists including Anish Kapoor, Jeppe Hein, Tony Cragg, Olafur Eliasson, Fernando Bottero and Elmgreen & Dragset. The sculpture park focus is sight specific and international contemporary works of art and is available all year.',
+      title: 'Gift Ideas',
+      text: "Whether you're looking for a birthday present, a wedding gift, or a holiday surprise, our fabric gift bags are the perfect way to add a personal touch to any occasion. Use our bags to wrap a variety of gifts, from jewelry and accessories to small electronics and gadgets. Not sure where to start? Check out our gallery for inspiration!",
       image: 'https://storage.googleapis.com/planetposen-images/front-kf-3.jpg'
     },
     {
@@ -32,8 +33,8 @@
       image: 'https://storage.googleapis.com/planetposen-images/front-bee-1.jpg'
     },
     {
-      title: 'Sculpture park of international standing',
-      text: 'The scenic sculpture park has an impressive collection of works by internationally renowned contemporary artists including Anish Kapoor, Jeppe Hein, Tony Cragg, Olafur Eliasson, Fernando Bottero and Elmgreen & Dragset. The sculpture park focus is sight specific and international contemporary works of art and is available all year.',
+      title: 'Gift Ideas',
+      text: '',
       imageRight: false,
       image: 'https://storage.googleapis.com/planetposen-images/front-bee-2.jpg'
     }
@@ -42,12 +43,12 @@
   const textTitle: Array<IFrontText> = [
     {
       title: 'Katy Vandekerckhove:',
-      text: 'Kistefos was really a jewel on earth with high level art in fantastic surroundings',
+      text: 'Give a gift that keeps on giving - our fabric gift bags are reusable, eco-friendly, and stylish.',
       color: '#27615d'
     },
     {
       title: 'Katy Vandekerckhove:',
-      text: 'Kistefos was really a jewel on earth with high level art in fantastic surroundings',
+      text: 'Wrap it up in style and sustainability with planetposen fabric gift bags.',
       color: 'orange'
     }
   ];
@@ -104,7 +105,10 @@
   <FrontText data="{textTitle[0]}" />
 
   <FrontTextImage data="{textImages[3]}" />
+
+  <!--
   <FrontTextImage data="{textImages[4]}" />
+  -->
 
   <FrontText data="{textTitle[1]}" />
 </section>
