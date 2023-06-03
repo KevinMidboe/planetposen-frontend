@@ -34,7 +34,7 @@
     },
     {
       title: 'Gift Ideas',
-      text: "",
+      text: '',
       imageRight: false,
       image: 'https://storage.googleapis.com/planetposen-images/front-bee-2.jpg'
     }
@@ -105,7 +105,10 @@
   <FrontText data="{textTitle[0]}" />
 
   <FrontTextImage data="{textImages[3]}" />
+
+  <!--
   <FrontTextImage data="{textImages[4]}" />
+  -->
 
   <FrontText data="{textTitle[1]}" />
 </section>
